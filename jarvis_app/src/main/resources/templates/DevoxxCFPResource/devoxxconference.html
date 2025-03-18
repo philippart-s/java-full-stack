@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>🎙️ Conférences à Devoxx France 🇫🇷</title>
+</head>
+<body>
+<div>
+
+  <!-- 38-app-devoxx-confs-html -->
+  <a href="/devoxx-talks/template">🎙️ Get talks 🎙️</a>
+  </br>
+  </br>
+
+  {#if conferences != null && conferences.size > 0 }
+  {#for conf in conferences}
+    <ul>
+      <li>Talk name: {conf.title}</li>
+    </ul>
+  {/for}
+  {#else}
+    💥 No information to display 💥
+  {/if}
+</div>
+</body>
+</html>
