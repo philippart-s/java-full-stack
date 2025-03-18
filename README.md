@@ -6,6 +6,7 @@ Code source for the Java full stack conference
 The simpliest way to use this code is to re-open the project with the Dev Containers.
 
 # ⚡️ 01 - Quarkus app : Jarvis-App ⚡️
+## 📼 Backend 📼
 
  - run [_init/01-app-create.sh](./_init/)
  - run `quarkus dev` in `jarvis-app` (`02-start-quarkus-dev.sh`)
@@ -54,3 +55,20 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - run synchronisation: `curl http://localhost:8080/devoxx-talks/synchro`
  - test again the chatbot: `curl -N -X POST -H "Content-Type: text/plain" -d "Bonjour, peux-tu me dire si Stéphane Philippart a des talks à Devoxx ?" http://localhost:8080/chatbot-api`
  - add prod configuration for DB in the [application.properties](./jarvis_app/src/main/resources/application.properties) (`32-app-db-prod-config`)
+
+## 🎨 Frontend 🎨
+ - add the 'quarkus-qute-web' extension (`33-add-quarkus-qute-ext.sh`)
+ - create the [devoxxconference.html](./jarvis_app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
+  - add the HTML code to call the template (`34-app-devoxx-confs-html`)
+ - update [DevoxxCFPResource.java](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
+  - inject the template (`35-app-devoxx-resource-template-inject`)
+  - create the `index` endpoint (`36-app-devoxx-resource-template-index`)
+  - create the `template` endpoint (`37-app-devoxx-resource-template`)
+ - test the application to display Devoxx talks: `http://localhost:8080/devoxx-talks/index`
+ - dev UI: `http://localhost:8080/q/dev-ui/welcome`
+ - add `quarkus-websockets-next` extension (`38-add-quarkus-websockets-ext.sh`)
+ - create the [ChatBotWebsocketResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
+  - add the `WebSocket` annotation (`39-app-chatbot-ws-annot`)
+  - inject `ChabotService` (`40-app-chatbot-ws-inject-svc`)
+  - create the `onMessage` method (`41-app-chatbot-ws-on-message`)
+  - test the chatbot: `http://localhost:8080/`

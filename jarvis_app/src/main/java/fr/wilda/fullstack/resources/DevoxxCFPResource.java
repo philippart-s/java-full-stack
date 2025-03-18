@@ -1,5 +1,6 @@
 package fr.wilda.fullstack.resources;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -9,6 +10,10 @@ import org.slf4j.LoggerFactory;
 import fr.wilda.fullstack.dto.Conference;
 import fr.wilda.fullstack.services.DevoxxCFPService;
 import fr.wilda.fullstack.services.DevoxxDataEmbeddingService;
+import io.quarkus.qute.Location;
+import io.quarkus.qute.Template;
+import io.quarkus.qute.TemplateInstance;
+import io.smallrye.common.annotation.Blocking;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -29,6 +34,11 @@ public class DevoxxCFPResource {
   @Inject
   DevoxxDataEmbeddingService devoxxDataEmbedding;
 
+  // 35-app-devoxx-resource-template-inject
+  @Inject
+  @Location("DevoxxCFPResource/devoxxconference.html")
+  Template devoxxconference;
+
   // 18-app-devoxx-resource-get-conferences-annot
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -39,6 +49,26 @@ public class DevoxxCFPResource {
     _LOG.info("Nombre de conférences à Devoxx : {}", devoxxConferences.size());
 
     return devoxxConferences;
+  }
+
+  // 36-app-devoxx-resource-template-index
+  @GET
+  @Path("/index")
+  @Produces(MediaType.TEXT_HTML)
+  @Blocking
+  public TemplateInstance getIndex() throws Exception {
+
+    return devoxxconference.data("conferences", Collections.EMPTY_LIST);
+  }
+
+  // 37-app-devoxx-resource-template
+  @GET
+  @Path("/template")
+  @Produces(MediaType.TEXT_HTML)
+  @Blocking
+  public TemplateInstance getConferencesTemplate() throws Exception {
+
+    return devoxxconference.data("conferences", devoxxCFP.getConferences().subList(0, 10));
   }
 
   // 31-app-devoxx-resource-rest-synchro
