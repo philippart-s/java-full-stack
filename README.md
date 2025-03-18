@@ -5,10 +5,10 @@ Code source for the Java full stack conference
 
 The simpliest way to use this code is to re-open the project with the Dev Containers.
 
-# ⚡️ 01 - Quarkus app : Jarvis-App ⚡️
+# ⚡️ 01 - Quarkus app : [jarvis_app](./jarvis_app/) ⚡️
 ## 📼 Backend 📼
 
- - run [_init/01-app-create.sh](./_init/)
+ - run [_init/01-app-create.sh](./_init/01-app-create.sh)
  - run `quarkus dev` in `jarvis-app` (`02-start-quarkus-dev.sh`)
  - `curl http://localhost:8080/hello`
  - connect to the developer console: `http://localhost:8080`
@@ -72,3 +72,23 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - inject `ChabotService` (`40-app-chatbot-ws-inject-svc`)
   - create the `onMessage` method (`41-app-chatbot-ws-on-message`)
   - test the chatbot: `http://localhost:8080/`
+
+# 🏗️ 02 - Infrastructure as Code : [jarvis_iac](./jarvis_iac) 🏗️
+
+  - create the pulumi project: [_init/42-iac-create.sh](./_init/42-iac-create.sh)
+  - create the [JarvisIaC](./jarvis_iac/src/JarvisIaC.java) class
+    - add the shebank directive (`01-iac-shebang`)
+    - add dependencies (`02-iac-dependencies`)
+    - declare the OVHcloud service (`03-iac-ovhcloud-serviceId`)
+    - create the kubernetes
+      - declare the main configurations (`04-iac-kube-details`)
+      - declare the nodepool (`05-iac-kube-nodepool-details`)
+      - export kubeconfig (`06-iac-kube-kubeconfig`)
+    - create the database
+      - delacre the main configuration (`06-iac-db-details`)
+      - declare user for PostgreSQL (`07-iac-db-postgres-user`)
+      - declare PostgreSQL instance (`08-iac-db-postgres-instance`)
+      - export DB configuations (`09-iac-db-conf-export`)
+  - set new runtime configuration in [Pulumi.yaml](./jarvis_iac/Pulumi.yaml) file (`10-pulumi-new-runtime-cfg`)
+
+
