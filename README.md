@@ -57,9 +57,10 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
  - add prod configuration for DB in the [application.properties](./jarvis_app/src/main/resources/application.properties) (`32-app-db-prod-config`)
 
 ## 🎨 Frontend 🎨
- - add `quarkus-websockets-next` extension (`33-add-quarkus-websockets-ext`)
+ - add `quarkus-websockets-next` extension (`33-add-quarkus-websockets-ext.sh`)
  - create the [ChatBotWebsocketResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
   - add the `WebSocket` annotation (`34-app-chatbot-ws-annot`)
   - inject `ChabotService` (`35-app-chatbot-ws-inject-svc`)
   - create the `onMessage` method (`36-app-chatbot-ws-on-message`)
   - test the websocket 
+ - add the 'quarkus-qute-web' extension (`37-add-quarkus-qute-ext.sh`)
