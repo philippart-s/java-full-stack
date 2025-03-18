@@ -57,19 +57,18 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
  - add prod configuration for DB in the [application.properties](./jarvis_app/src/main/resources/application.properties) (`32-app-db-prod-config`)
 
 ## 🎨 Frontend 🎨
- - add `quarkus-websockets-next` extension (`33-add-quarkus-websockets-ext.sh`)
- - create the [ChatBotWebsocketResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
-  - add the `WebSocket` annotation (`34-app-chatbot-ws-annot`)
-  - inject `ChabotService` (`35-app-chatbot-ws-inject-svc`)
-  - create the `onMessage` method (`36-app-chatbot-ws-on-message`)
-  - test the websocket 
- - add the 'quarkus-qute-web' extension (`37-add-quarkus-qute-ext.sh`)
- - create the [](./jarvis_app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
-  - add the HTML code to call the template (`38-app-devoxx-confs-html`)
- - update [](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
-  - inject the template (`39-app-devoxx-resource-template-inject`)
-  - create the `index` endpoint (`40-app-devoxx-resource-template-index`)
-  - create the `template` endpoint (`41-app-devoxx-resource-template`)
+ - add the 'quarkus-qute-web' extension (`33-add-quarkus-qute-ext.sh`)
+ - create the [devoxxconference.html](./jarvis_app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
+  - add the HTML code to call the template (`34-app-devoxx-confs-html`)
+ - update [DevoxxCFPResource.java](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
+  - inject the template (`35-app-devoxx-resource-template-inject`)
+  - create the `index` endpoint (`36-app-devoxx-resource-template-index`)
+  - create the `template` endpoint (`37-app-devoxx-resource-template`)
  - test the application to display Devoxx talks: `http://localhost:8080/devoxx-talks/index`
- - test the chatbot: `http://localhost:8080/`
  - dev UI: `http://localhost:8080/q/dev-ui/welcome`
+ - add `quarkus-websockets-next` extension (`38-add-quarkus-websockets-ext.sh`)
+ - create the [ChatBotWebsocketResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
+  - add the `WebSocket` annotation (`39-app-chatbot-ws-annot`)
+  - inject `ChabotService` (`40-app-chatbot-ws-inject-svc`)
+  - create the `onMessage` method (`41-app-chatbot-ws-on-message`)
+  - test the chatbot: `http://localhost:8080/`
