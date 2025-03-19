@@ -25,9 +25,11 @@ replay_pid*
 
 # _init folder
 _init/jarvis/
+_init/jarvis_iac/
 
 # Configuration
 .env
+.env.bck
 .vscode/settings.json
 
 # Java configuration
