@@ -29,6 +29,7 @@ _init/jarvis_iac/
 
 # Configuration
 .env
+.env.bck
 .vscode/settings.json
 
 # Java configuration

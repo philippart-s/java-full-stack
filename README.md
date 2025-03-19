@@ -80,15 +80,19 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
     - add the shebank directive (`01-iac-shebang`)
     - add dependencies (`02-iac-dependencies`)
     - declare the OVHcloud service (`03-iac-ovhcloud-serviceId`)
+    - set timeout (`04-iac-timeout`)
     - create the kubernetes
-      - declare the main configurations (`04-iac-kube-details`)
-      - declare the nodepool (`05-iac-kube-nodepool-details`)
-      - export kubeconfig (`06-iac-kube-kubeconfig`)
+      - declare the main configurations (`05-iac-kube-details`)
+      - declare the nodepool (`06-iac-kube-nodepool-details`)
+      - export kubeconfig (`07-iac-kube-kubeconfig`)
     - create the database
-      - delacre the main configuration (`06-iac-db-details`)
-      - declare user for PostgreSQL (`07-iac-db-postgres-user`)
-      - declare PostgreSQL instance (`08-iac-db-postgres-instance`)
-      - export DB configuations (`09-iac-db-conf-export`)
-  - set new runtime configuration in [Pulumi.yaml](./jarvis_iac/Pulumi.yaml) file (`10-pulumi-new-runtime-cfg`)
+      - delacre the main configuration (`08-iac-db-details`)
+      - declare user for PostgreSQL (`09-iac-db-postgres-user`)
+      - declare PostgreSQL instance (`10-iac-db-postgres-instance`)
+      - export DB configuations (`11-iac-db-conf-export`)
+    - call the two methods in main (`12-iac-call-kube`) (`13-iac-call-db`)
+  - set new runtime configuration in [Pulumi.yaml](./jarvis_iac/Pulumi.yaml) file (`14-pulumi-new-runtime-cfg`)
+  - add OVHcloud provider (`15-iac-ovh-provider.sh`)
+  - run the infrastructure creation (`16-iac-pulumi-up`)
 
 

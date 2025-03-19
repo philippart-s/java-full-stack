@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # Load enviroment variables
+set -a
 source ../.env
+set +a
 
 clear
 
-bat -P -r 10: $(basename "$0")
+bat -P -r 15: $(basename "$0")
 
 mkdir ./jarvis_iac
 cd ./jarvis_iac
