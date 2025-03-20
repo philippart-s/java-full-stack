@@ -95,4 +95,13 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - add OVHcloud provider (`15-iac-ovh-provider.sh`)
   - run the infrastructure creation (`16-iac-pulumi-up`)
 
+# ⚙️ Jenkins ⚙️
 
+  - create the [Jenkinsfile](./jarvis_app/Jenkinsfile) file
+  - create a pipeline (`01-jenkins-pipeline`)
+  - create the `📦 Build Quarkus app ⚡️` stage (`02-jenkins-app-build`)
+  - create the `🐳 Build Docker image 🐳` stage (`03-jenkins-docker-build`)
+  - create the `🏷️ Tag et Push dans GitHub 🐙` stage (`04-jenkins-github-tag`)
+  - create the `🪪 Release GitHub 🪪` stage (`05-jenkins-github-release`)
+  - create the post pipeline stage (` 06-jenkins-post-pipeline`)
+  - run the pipeline in Jenkins (`http://51.210.251.111:8080`)
