@@ -7,7 +7,7 @@ pipeline {
         // 02-jenkins-app-build
         stage('📦 Build Quarkus app ⚡️') {
             steps {
-                dir('jarvis-app') {
+                dir('jarvis_app') {
                     sh 'mvn clean package'
                 }
             }
@@ -15,7 +15,7 @@ pipeline {
         // 03-jenkins-docker-build
         stage('🐳 Build Docker image 🐳') {
             steps {
-                dir('jarvis-app') {
+                dir('jarvis_app') {
                     script {
                         docker.withRegistry('https://95y036e0.gra7.container-registry.ovh.net/devoxx', 'harbor') {
                             def image = docker.build('95y036e0.gra7.container-registry.ovh.net/devoxx/jarvis-app', '-f src/main/docker/Dockerfile.jvm .')
