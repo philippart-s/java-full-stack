@@ -73,7 +73,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - create the `onMessage` method (`41-app-chatbot-ws-on-message`)
   - test the chatbot: `http://localhost:8080/`
 
-# 🏗️ 02 - Infrastructure as Code : [jarvis_iac](./jarvis_iac) 🏗️
+# 🧩 02 - Infrastructure as Code : [jarvis_iac](./jarvis_iac) 🧩
 
   - create the pulumi project: [_init/42-iac-create.sh](./_init/42-iac-create.sh)
   - create the [JarvisIaC](./jarvis_iac/src/JarvisIaC.java) class
@@ -95,7 +95,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - add OVHcloud provider (`15-iac-ovh-provider.sh`)
   - run the infrastructure creation (`16-iac-pulumi-up`)
 
-# ⚙️ Jenkins ⚙️
+# 🏗️ Jenkins : [Jenkinsfile](./jarvis_app/Jenkinsfile) 🏗️
 
   - create the [Jenkinsfile](./jarvis_app/Jenkinsfile) file
   - create a pipeline (`01-jenkins-pipeline`)
