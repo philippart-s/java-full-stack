@@ -19,7 +19,7 @@ pipeline {
                     script {
                         docker.withRegistry('https://95y036e0.gra7.container-registry.ovh.net/devoxx', 'harbor') {
                             def image = docker.build('95y036e0.gra7.container-registry.ovh.net/devoxx/jarvis-app', '-f src/main/docker/Dockerfile.jvm .')
-                            image.push("${env.BUILD_NUMBER}")
+                            image.push("v${env.BUILD_NUMBER}")
                         }
                     }
                 }

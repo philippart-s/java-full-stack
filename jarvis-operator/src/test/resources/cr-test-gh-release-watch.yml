@@ -1,0 +1,6 @@
+apiVersion: "fullstack.wilda.fr/v1"
+kind: JarvisOperator
+metadata:
+  name: check-release
+spec:
+  deploy: ✅

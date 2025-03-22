@@ -36,3 +36,6 @@ _init/jarvis-operator
 # Java configuration
 target/
 .quarkus/
+
+# 🏗️ Jarvis Operator 🏗️
+kubeconfig-ovh.yml
