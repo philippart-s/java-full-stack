@@ -162,7 +162,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
     - launch a Jenkins release
   - test Jarvis
     - whitelist the managed kubernetes on the DB
-    - 
+    - run [4.42-test-mks-jarvis.sh](./jarvis-operator/4.42-test-mks-jarvis.sh)
 
 
   
