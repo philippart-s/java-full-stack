@@ -9,5 +9,5 @@ clear
 
 bat -P -r 12: $(basename "$0")
 
-# Start Quarkus in dev mode
-quarkus dev #-Dquarkus.profile=prod
+# First create the operator project
+quarkus create app fr.wilda.fullstack:jarvis-operator -x='qosdk'

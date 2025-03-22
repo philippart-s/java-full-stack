@@ -95,7 +95,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - add OVHcloud provider (`15-iac-ovh-provider.sh`)
   - run the infrastructure creation (`16-iac-pulumi-up`)
 
-# 🏗️ Jenkins : [Jenkinsfile](./jarvis_app/Jenkinsfile) 🏗️
+# 🏗️ 03 - Jenkins : [Jenkinsfile](./jarvis_app/Jenkinsfile) 🏗️
 
   - create the [Jenkinsfile](./jarvis_app/Jenkinsfile) file
   - create a pipeline (`01-jenkins-pipeline`)
@@ -105,3 +105,65 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - create the `🪪 Release GitHub 🪪` stage (`05-jenkins-github-release`)
   - create the post pipeline stage (` 06-jenkins-post-pipeline`)
   - run the pipeline in Jenkins (`http://51.210.251.111:8080`)
+
+# 🤖 04 - Jarvis operator : [jarvis_operator](./jarvis_operator) 🤖
+
+  - run [_init/4.01-operator-create.sh](./_init/4.01-operator-create.sh) 
+  - update the [application.properties](./jarvis-operator/src/main/resources/application.properties) file (`4.02-configure-k8s-client`)
+  - start Quarkus in dev mode in [jarvis-operator](./jarvis-operator/) folder (`4.03-start-quarkus-dev.sh`)
+  - in the dev mode terminal (`:`) run `qosdk api --version v1 --kind HelloWorldOperator --group fullstack.wilda.fr` (`q` to quit)
+  - update the file [kubeconfig.yml](./jarvis-operator/kubeconfig.yml) with local Kubernetes configuration
+  - run [4.04-helloworld-crd-display.sh](./jarvis-operator/4.04-helloworld-crd-display.sh)
+  - update [HelloWorldOperatorSpec](./jarvis-operator/src/main/java/fr/wilda/fullstack/HelloWorldOperatorSpec.java) class (`4.05-add-name-hw-spec`)
+  - display CRD update (`4.06-helloworld-crd-display-update.sh`)
+  - update [HelloWorldOperatorReconciler](./jarvis-operator/src/main/java/fr/wilda/fullstack/HelloWorldOperatorReconciler.java) class (`4.07-log-hw-reconcile`) & (`4.08-add-cleanup-hw-reconcile`)
+  - create the test CRD [cr-test-hello-world.yaml](./jarvis-operator/src/test/cr-test-hello-world.yaml)
+  - apply the CRD (`4.09-apply-cr-test-hello-world.sh`)
+  - in the Quarkus terminal mode (`:`) run `qosdk api --version v1 --kind JarvisOperator --group fullstack.wilda.fr`, then quit (`q`)
+  - update the [JarvisOperatorSpec](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorSpec.java) class (`4.10-add-jarvis-operator-spec`) and [JarvisOperatorStatus](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorStatus.java) class (`4.11-add-jarvis-operator-status`)
+  - update the [JarvisOperatorReconciler](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorReconciler.java)
+    - add `makeDeployment` method (`4.14-create-deployment`)
+    - add `makeService` method (`4.15-create-service`)
+    - get namspace and status (`4.16-namespace-and-status`)
+    - add jarvis deployment code (`4.17-deploy-jarvis`)
+    - create deployment (`4.18-make-deployment`)
+    - create service (`4.19-make-service`)
+    - update the status (`4.20-update-status`)
+    - apply the status patch (`4.21-apply-status-patch`)
+    - add `fireEvent` method (`4.22-add-fire-event-method`)
+  - add `quarkus-rest-jackson` extension (`4.22-add-quarkus-rest-jackson.sh`)
+  - create [GHTagEvent](./jarvis-operator/src/main/java/fr/wilda/fullstack/webhook/GHTagEvent.java) class 
+    - add fields in `GHTagEvent` (`4.23-add-ref-and-ref-type-fields`)
+  - create [WebHook](./jarvis-operator/src/main/java/fr/wilda/fullstack/webhook/WebHook.java) class
+    - inject Jarvis operator (`4.24-inject-jarvis-operator`)
+    - create `newTag` method (`4.25-add-new-tag-method`)
+  - test Jarvis operator
+    - create secrets `devoxx-secrets` (`4.26-create-devoxx-secrets.sh`)
+    - create [cr-test-gh-release-watch.yml](./jarvis-operator/src/test/resources/cr-test-gh-release-watch.yml) file
+    - create `jarvis` namespace and apply `cr-test-gh-release-watch` resource (`4.27-apply-cr-test-gh-release.sh`)
+    - send a test event (`4.28-send-test-event.sh`)
+    - create a local port forward (`4.29-local-port-forward`)
+    - whitelist local IP in the DB (`4.30-local-ip.sh`)
+    - test Jarvis application (`4.31-test-local-jarvis.sh`)
+  - package the operator
+    - update the [application.properties](./jarvis-operator/src/main/resources/application.properties) file (`4.32-packaging-configuration`)
+    - add Quarkus extension `quarkus-container-image-jib` (`4.33-add-quarkus-jib-extension.sh`)
+    - package with maven the operator (`4.34-operator-packaging.sh`)
+  - deploy operator on managed Kubernetes
+    - build and push Docker image (`4.35-push-operator-image.sh`)
+    - add [kubernetes.yml](./jarvis-operator/src/main/kubernetes/kubernetes.yml) file 
+    - remove `docker.io` from [kubernetes.yml](./jarvis-operator/target/kubernetes/kubernetes.yml)
+    - create namespaces in Kubernetes (`4.36-create-mks-ns.sh`)
+    - create CRDs in managed Kubernetes (`4.37-create-mks-crds`)
+    - deploy the operator (`4.38-deploy-operator-on-mks`)
+  - test the operator
+    - send a "github" release (`4.41-test-mks-operator.sh`)
+    - update GH Webhook with LB IP
+    - launch a Jenkins release
+  - test Jarvis
+    - whitelist the managed kubernetes on the DB
+    - run [4.42-test-mks-jarvis.sh](./jarvis-operator/4.42-test-mks-jarvis.sh)
+
+
+  
+  

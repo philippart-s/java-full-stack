@@ -26,6 +26,7 @@ replay_pid*
 # _init folder
 _init/jarvis/
 _init/jarvis_iac/
+_init/jarvis-operator
 
 # Configuration
 .env
@@ -35,3 +36,6 @@ _init/jarvis_iac/
 # Java configuration
 target/
 .quarkus/
+
+# 🏗️ Jarvis Operator 🏗️
+kubeconfig-ovh.yml
