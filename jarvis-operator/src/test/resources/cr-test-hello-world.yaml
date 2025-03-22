@@ -1,0 +1,6 @@
+apiVersion: "fullstack.wilda.fr/v1"
+kind: HelloWorldOperator
+metadata:
+  name: hello-world
+spec:
+  name: Devoxx France 🥳!

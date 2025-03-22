@@ -95,7 +95,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - add OVHcloud provider (`15-iac-ovh-provider.sh`)
   - run the infrastructure creation (`16-iac-pulumi-up`)
 
-# 🏗️ Jenkins : [Jenkinsfile](./jarvis_app/Jenkinsfile) 🏗️
+# 🏗️ 03 - Jenkins : [Jenkinsfile](./jarvis_app/Jenkinsfile) 🏗️
 
   - create the [Jenkinsfile](./jarvis_app/Jenkinsfile) file
   - create a pipeline (`01-jenkins-pipeline`)
@@ -105,3 +105,19 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - create the `🪪 Release GitHub 🪪` stage (`05-jenkins-github-release`)
   - create the post pipeline stage (` 06-jenkins-post-pipeline`)
   - run the pipeline in Jenkins (`http://51.210.251.111:8080`)
+
+# 🤖 04 - Jarvis operator : [jarvis_operator](./jarvis_operator) 🤖
+
+  - run [_init/4.01-operator-create.sh](./_init/4.01-operator-create.sh) 
+  - update the [application.properties](./jarvis-operator/src/main/resources/application.properties) file (`4.02-configure-k8s-client`)
+  - start Quarkus in dev mode in [jarvis-operator](./jarvis-operator/) folder (`4.03-start-quarkus-dev.sh`)
+  - in the dev mode terminal (`:`) run `qosdk api --version v1 --kind HelloWorldOperator --group fullstack.wilda.fr` (`q` to quit)
+  - update the file [kubeconfig.yml](./jarvis-operator/kubeconfig.yml) with local Kubernetes configuration
+  - run [4.04-helloworld-crd-display.sh](./jarvis-operator/4.04-helloworld-crd-display.sh)
+  - update [HelloWorldOperatorSpec](./jarvis-operator/src/main/java/fr/wilda/fullstack/HelloWorldOperatorSpec.java) class (`4.05-add-name-hw-spec`)
+  - display CRD update (`4.06-helloworld-crd-display-update.sh`)
+  - update [HelloWorldOperatorReconciler](./jarvis-operator/src/main/java/fr/wilda/fullstack/HelloWorldOperatorReconciler.java) class (`4.07-log-hw-reconcile`) & (`4.08-add-cleanup-hw-reconcile`)
+  - create the test CRD [cr-test-hello-world.yaml](./jarvis-operator/src/test/cr-test-hello-world.yaml)
+  - apply the CRD (`4.09-apply-cr-test-hello-world.sh`)
+  - in the Quarkus terminal mode (`:`) run `qosdk api --version v1 --kind JarvisOperator --group fullstack.wilda.fr`, then quit (`q`)
+  - update the [JarvisOperatorSpec](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorSpec.java) class (`4.10-add-jarvis-operator-spec`) and [JarvisOperatorStatus](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorStatus.java) class (`4.11-add-jarvis-operator-status`)
