@@ -1,0 +1,8 @@
+package fr.wilda.fullstack.sdk;
+
+// 5.04-svc-annotation
+public interface JarvisAPIService {
+
+  // 5.05-svc-endpoint
+
+}
