@@ -10,4 +10,4 @@ clear
 bat -P -r 12: $(basename "$0")
 
 # Creat an app named jarvis (artifactId) with groupId 'fr.wilda.fullstack' and version '0.0.1-SNAPSHOT'
-quarkus create app fr.wilda.fullstack:jarvis-init:0.0.1-SNAPSHOT
+quarkus create app fr.wilda.fullstack:jarvis-app-init:0.0.1-SNAPSHOT

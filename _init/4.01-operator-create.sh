@@ -10,4 +10,4 @@ clear
 bat -P -r 12: $(basename "$0")
 
 # First create the operator project
-quarkus create app fr.wilda.fullstack:jarvis-operator -x='qosdk'
+quarkus create app fr.wilda.fullstack:jarvis-operator-init -x='qosdk'
