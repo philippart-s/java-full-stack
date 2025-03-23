@@ -16,16 +16,10 @@ public class HelloWorldOperatorReconciler implements Reconciler<HelloWorldOperat
     public UpdateControl<HelloWorldOperator> reconcile(HelloWorldOperator resource,
             Context<HelloWorldOperator> context) {
         // 4.07-log-hw-reconcile                
-        log.info("👋 Hello, World 🌏! From {} ", resource.getSpec().getName());
-
+        
         return UpdateControl.noUpdate();
     }
 
     // 4.08-add-cleanup-hw-reconcile
-    @Override
-    public DeleteControl cleanup(HelloWorldOperator resource, Context<HelloWorldOperator> context) throws Exception {
-        log.info("🥲  Goodbye, World 🌏! From {}", resource.getSpec().getName());
-
-        return DeleteControl.defaultDelete();
-    }
+    
 }
