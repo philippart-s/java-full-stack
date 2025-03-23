@@ -54,20 +54,20 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
  - add prod configuration for DB in the [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.35-app-db-prod-config`)
 
 ## 🎨 Frontend 🎨
- - add the 'quarkus-qute-web' extension (`33-add-quarkus-qute-ext.sh`)
+ - add the 'quarkus-qute-web' extension [1.35-add-quarkus-qute-ext.sh](./jarvis-app/1.35-add-quarkus-qute-ext.sh)
  - create the [devoxxconference.html](./jarvis-app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
-  - add the HTML code to call the template (`34-app-devoxx-confs-html`)
+  - add the HTML code to call the template (`1.36-app-devoxx-confs-html`)
  - update [DevoxxCFPResource.java](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
-  - inject the template (`35-app-devoxx-resource-template-inject`)
-  - create the `index` endpoint (`36-app-devoxx-resource-template-index`)
-  - create the `template` endpoint (`37-app-devoxx-resource-template`)
+  - inject the template (`1.37-app-devoxx-resource-template-inject`)
+  - create the `index` endpoint (`1.38-app-devoxx-resource-template-index`)
+  - create the `template` endpoint (`1.39-app-devoxx-resource-template`)
  - test the application to display Devoxx talks: `http://localhost:8080/devoxx-talks/index`
  - dev UI: `http://localhost:8080/q/dev-ui/welcome`
- - add `quarkus-websockets-next` extension (`38-add-quarkus-websockets-ext.sh`)
+ - add `quarkus-websockets-next` extension: [1.40-add-quarkus-websocket-ext.sh](./jarvis-app/1.40-add-quarkus-websocket-ext.sh)
  - create the [ChatBotWebsocketResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
-  - add the `WebSocket` annotation (`39-app-chatbot-ws-annot`)
-  - inject `ChabotService` (`40-app-chatbot-ws-inject-svc`)
-  - create the `onMessage` method (`41-app-chatbot-ws-on-message`)
+  - add the `WebSocket` annotation (`1.41-app-chatbot-ws-annot`)
+  - inject `ChabotService` (`1.42-app-chatbot-ws-inject-svc`)
+  - create the `onMessage` method (`1.43-app-chatbot-ws-on-message`)
   - test the chatbot: `http://localhost:8080/`
 
 # 🧩 02 - Infrastructure as Code : [jarvis_iac](./jarvis_iac) 🧩

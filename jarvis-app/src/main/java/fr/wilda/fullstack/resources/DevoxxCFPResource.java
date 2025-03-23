@@ -33,7 +33,7 @@ public class DevoxxCFPResource {
   @Inject
   DevoxxDataEmbeddingService devoxxDataEmbedding;
 
-  // 35-app-devoxx-resource-template-inject
+  // 1.37-app-devoxx-resource-template-inject
   @Inject
   @Location("DevoxxCFPResource/devoxxconference.html")
   Template devoxxconference;
@@ -50,7 +50,7 @@ public class DevoxxCFPResource {
     return devoxxConferences;
   }
 
-  // 36-app-devoxx-resource-template-index
+  // 1.38-app-devoxx-resource-template-index
   @GET
   @Path("/index")
   @Produces(MediaType.TEXT_HTML)
@@ -60,7 +60,7 @@ public class DevoxxCFPResource {
     return devoxxconference.data("conferences", Collections.EMPTY_LIST);
   }
 
-  // 37-app-devoxx-resource-template
+  // 1.39-app-devoxx-resource-template
   @GET
   @Path("/template")
   @Produces(MediaType.TEXT_HTML)
