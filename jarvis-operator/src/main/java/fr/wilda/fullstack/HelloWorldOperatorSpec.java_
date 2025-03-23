@@ -1,0 +1,5 @@
+package fr.wilda.fullstack;
+
+public class HelloWorldOperatorSpec {
+  // 4.05-add-name-hw-spec
+}

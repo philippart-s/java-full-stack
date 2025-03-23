@@ -1,0 +1,5 @@
+package fr.wilda.fullstack;
+
+public class JarvisOperatorStatus {
+  // 4.11-add-jarvis-operator-status
+}

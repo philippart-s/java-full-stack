@@ -1,0 +1,5 @@
+package fr.wilda.fullstack;
+
+public class JarvisOperatorSpec {
+  // 4.10-add-jarvis-operator-spec
+}
