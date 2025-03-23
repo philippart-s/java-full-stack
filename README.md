@@ -119,6 +119,8 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - in the Quarkus terminal mode (`:`) run `qosdk api --version v1 --kind JarvisOperator --group fullstack.wilda.fr`, then quit (`q`)
   - update the [JarvisOperatorSpec](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorSpec.java) class (`4.10-add-jarvis-operator-spec`) and [JarvisOperatorStatus](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorStatus.java) class (`4.11-add-jarvis-operator-status`)
   - update the [JarvisOperatorReconciler](./jarvis-operator/src/main/java/fr/wilda/fullstack/JarvisOperatorReconciler.java)
+    - add variables (`4.12-add-reconciler-var`)
+    - add event source (`4.13-add-event-source`)
     - add `makeDeployment` method (`4.14-create-deployment`)
     - add `makeService` method (`4.15-create-service`)
     - get namspace and status (`4.16-namespace-and-status`)
