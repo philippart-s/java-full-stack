@@ -186,7 +186,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
     - add `call` (`5.14-devoxx-call`)
   - add `DevoxxSubCommand` to the `JarvisCommand` class
   - create native CLI
-    - set logs (`5.15-prod-logs`)
+    - set logs (`5.15-prod-logs`) in [application.properties](./jarvis-cli/src/main/resources/application.properties)
     - run [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
     - test CLI 
   

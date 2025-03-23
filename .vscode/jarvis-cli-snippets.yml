@@ -1,0 +1,137 @@
+snippet 5.04-svc-annotation:
+  prefix: "5.04-svc-annotation"
+  name: "5.04-svc-annotation"
+  scope: "java"
+  body: |
+    @ClientHeaderParam(name = "Content-Type", value = MediaType.TEXT_PLAIN)
+    @RegisterRestClient
+
+snippet 5.05-svc-endpoint:
+  prefix: "5.05-svc-endpoint"
+  name: "5.05-svc-endpoint"
+  scope: "java"
+  body: |
+    @POST
+    @Path("/chatbot-api")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Multi<String> askJarvis(@FormParam("message") String message);
+
+    @GET
+    @Path("/devoxx-synchro")
+    public Response embeddingSynchro();
+
+    @GET
+    @Path("/devoxx-synchro/delete")
+    public Response embeddingDeletion();
+
+snippet 5.06-rest-client-cfg:
+  prefix: "5.06-rest-client-cfg"
+  name: "5.06-rest-client-cfg"
+  body: |
+    # RestClient parameter
+    quarkus.rest-client."fr.wilda.fullstack.sdk.JarvisAPIService".url=\${JARVIS_API_URL}
+    quarkus.rest-client."fr.wilda.fullstack.sdk.JarvisAPIService".scope=javax.inject.Singleton 
+
+snippet 5.07-jarvis-annot:
+  prefix: "5.07-jarvis-annot"
+  name: "5.07-jarvis-annot"
+  scope: "java"
+  body: |
+    @Command(name = "jarvis", mixinStandardHelpOptions = true)
+
+snippet 5.08-jarvis-rest-client:
+  prefix: "5.08-jarvis-rest-client"
+  name: "5.08-jarvis-rest-client"
+  scope: "java"
+  body: |
+    @RestClient
+    JarvisAPIService jarvisAPIService;
+
+snippet 5.09-jarvis-param:
+  prefix: "5.09-jarvis-param"
+  name: "5.09-jarvis-param"
+  scope: "java"
+  body: |
+    @Parameters(paramLabel = "<name>", defaultValue = "Explique de manière concise ce que tu es et à quoi tu sers.", description = "Pose une question à Jarvis, et il te répondra.")
+    String question;
+
+snippet 5.10-call-service:
+  prefix: "5.10-call-service"
+  name: "5.10-call-service"
+  scope: "java"
+  body: |
+    jarvisAPIService.askJarvis(question)
+            .subscribe()
+            .asStream()
+            .forEach(token -> {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(150);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                _LOG.info(token);
+            });
+    _LOG.info("\n");
+
+snippet 5.11-devoxx-svc-annotation:
+  prefix: "5.11-devoxx-svc-annotation"
+  name: "5.11-devoxx-svc-annotation"
+  scope: "java"
+  body: |
+    @Command(name = "devoxx", mixinStandardHelpOptions = true)
+
+snippet 5.12-devoxx-rest-client:
+  prefix: "5.12-devoxx-rest-client"
+  name: "5.12-devoxx-rest-client"
+  scope: "java"
+  body: |
+    @RestClient
+    JarvisAPIService jarvisAPIService;
+
+snippet 5.13-devoxx-options:
+  prefix: "5.13-devoxx-options"
+  name: "5.13-devoxx-options"
+  scope: "java"
+  body: |
+    @Option(names = { "-es",
+        "--embeddings-synchro" }, description = "Ajout des talks Devoxx dans la base d'embeddings")
+    boolean embbedingSynchro;
+
+    @Option(names = { "-ed",
+        "--embeddings-deletion" }, description = "Suppression des talks Devoxx de la base d'embeddings")
+    boolean embbedingDeletion;
+
+snippet 5.14-devoxx-call:
+  prefix: "5.14-devoxx-call"
+  name: "5.14-devoxx-call"
+  scope: "java"
+  body: |
+    if (embbedingSynchro) {
+      if (jarvisAPIService.embeddingSynchro().getStatusInfo()
+          .getFamily() != Response.Status.Family.SERVER_ERROR) {
+        _LOG.info("🤖 : Synchronisation des talks Devoxx ✅.");
+      } else {
+        _LOG.info("🤖 : Une erreur est survenue lors de la synchronisation des talks Devoxx ❌.");
+      }
+    } else {
+      if (embbedingDeletion) {
+        if (jarvisAPIService.embeddingDeletion().getStatusInfo()
+            .getFamily() != Response.Status.Family.SERVER_ERROR) {
+          _LOG.info("🤖 : Suppression des talks Devoxx ✅.");
+        } else {
+          _LOG.info("🤖 : Une erreur est survenue lors de la suppression des talks Devoxx ❌.");
+        }
+      }
+    }
+
+snippet 5.15-prod-logs:
+  prefix: "5.15-prod-logs"
+  name: "5.15-prod-logs"
+  scope: "java"
+  body: |
+    # Logs configuration
+    %prod.quarkus.log.level=OFF
+    %prod.quarkus.banner.enabled=false
+    %prod.quarkus.log.category."fr.wilda".level=INFO
+    %prod.quarkus.console.color=false
+    %prod.quarkus.log.console.format=%m

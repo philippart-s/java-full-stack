@@ -13,21 +13,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 // 5.04-svc-annotation
-@ClientHeaderParam(name = "Content-Type", value = MediaType.TEXT_PLAIN)
-@RegisterRestClient
 public interface JarvisAPIService {
 
   // 5.05-svc-endpoint
-  @POST
-  @Path("/chatbot-api")
-  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-  public Multi<String> askJarvis(@FormParam("message") String message);
 
-  @GET
-  @Path("/devoxx-synchro")
-  public Response embeddingSynchro();
-
-  @GET
-  @Path("/devoxx-synchro/delete")
-  public Response embeddingDeletion();
 }
