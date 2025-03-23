@@ -325,10 +325,84 @@
       "{/for}",
       "{#else}",
       "  💥 No information to display 💥",
-      "{/if}"
+      "{/if}",
+      ""
     ],
     "description": "",
     "prefix": "1.37-app-devoxx-confs-html",
     "scope": "html"
+  },
+  "1.38-app-devoxx-resource-template-inject": {
+    "body": [
+      "@Inject",
+      "@Location(\"DevoxxCFPResource/devoxxconference.html\")",
+      "Template devoxxconference;",
+      ""
+    ],
+    "description": "",
+    "prefix": "1.38-app-devoxx-resource-template-inject",
+    "scope": "java"
+  },
+  "1.39-app-devoxx-resource-template-index": {
+    "body": [
+      "@GET",
+      "@Path(\"/index\")",
+      "@Produces(MediaType.TEXT_HTML)",
+      "@Blocking",
+      "public TemplateInstance getIndex() throws Exception {",
+      "",
+      "  return devoxxconference.data(\"conferences\", Collections.EMPTY_LIST);",
+      "}",
+      ""
+    ],
+    "description": "",
+    "prefix": "1.39-app-devoxx-resource-template-index",
+    "scope": "java"
+  },
+  "1.40-app-devoxx-resource-template": {
+    "body": [
+      "@GET",
+      "@Path(\"/template\")",
+      "@Produces(MediaType.TEXT_HTML)",
+      "@Blocking",
+      "public TemplateInstance getConferencesTemplate() throws Exception {",
+      "",
+      "  return devoxxconference.data(\"conferences\", devoxxCFP.getConferences().subList(0, 10));",
+      "}",
+      ""
+    ],
+    "description": "",
+    "prefix": "1.40-app-devoxx-resource-template",
+    "scope": "java"
+  },
+  "1.42-app-chatbot-ws-annot": {
+    "body": [
+      "@WebSocket(path = \"/chatbot-ws\")",
+      ""
+    ],
+    "description": "",
+    "prefix": "1.42-app-chatbot-ws-annot",
+    "scope": "java"
+  },
+  "1.43-app-chatbot-ws-inject-svc": {
+    "body": [
+      "@Inject",
+      "ChatbotService chatbotService;",
+      ""
+    ],
+    "description": "",
+    "prefix": "1.43-app-chatbot-ws-inject-svc",
+    "scope": "java"
+  },
+  "1.44-app-chatbot-ws-on-message": {
+    "body": [
+      "@OnTextMessage",
+      "public Multi\u003cString\u003e onMessage(String message) {",
+      "  return chatbotService.askAQuestion(message);",
+      "}"
+    ],
+    "description": "",
+    "prefix": "1.44-app-chatbot-ws-on-message",
+    "scope": "java"
   }
 }
