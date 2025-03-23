@@ -24,8 +24,9 @@ hs_err_pid*
 replay_pid*
 
 # _init folder
+_init/jarvis-app/
 _init/jarvis/
-_init/jarvis_iac/
+_init/jarvis-iac/
 _init/jarvis-operator/
 _init/jarvis-cli-init/
 

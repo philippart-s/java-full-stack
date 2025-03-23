@@ -5,105 +5,102 @@ Code source for the Java full stack conference
 
 The simpliest way to use this code is to re-open the project with the Dev Containers.
 
-# ⚡️ 01 - Quarkus app : [jarvis_app](./jarvis_app/) ⚡️
+# ⚡️ 01 - Quarkus app : [jarvis-app](./jarvis-app/) ⚡️
 ## 📼 Backend 📼
 
- - run [_init/01-app-create.sh](./_init/01-app-create.sh)
- - run `quarkus dev` in `jarvis-app` (`02-start-quarkus-dev.sh`)
- - `curl http://localhost:8080/hello`
+ - run [_init/01-app-create.sh](./_init/1.01-app-create.sh)
+ - run [1.02-start-quarkus-dev.sh](./jarvis-app/1.02-start-quarkus-dev.sh)
+ - run [1.03-test-greetings.sh](./jarvis-app/1.03-test-greetings.sh)
  - connect to the developer console: `http://localhost:8080`
- - add `quarkus-langchain4j-mistral-ai` extension (`03-add-quarkus-langchain-ext.sh`)
- - configure extension in [application.properties](./jarvis_app/src/main/resources/application.properties) file (`04-app-langchain4j-cfg`)
- - create [ChatbotService](./jarvis_app/src/main/java/fr/wilda/fullstack/services/ChatbotService.java) interface
-  - add AI interface annotations (`05-app-ai-service`)
-  - add AI interface prompts (`06-app-ai-prompts`)
- - create [ChatbotRestResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/ChatbotRestResource.java) class
-  - add path (`07-app-chatbot-rest-path`)
-  - add logger (`08-app-chatbot-rest-logger`)
-  - inject rest client (`08-app-chatbot-rest-client`)
-  - add `ask` method anotions (`09-app-chatbot-rest-ask-annot`)
-  - call the model (`10-app-chatbot-rest-call-model`)
- - test the endpoint: `curl -N -X POST -H "Content-Type: text/plain" -d "Bonjour, peux-tu me dire ce qu'est la conférence Devoxx France s'il te plaît ?" http://localhost:8080/chatbot-api`
- - ask for recent information about Devoxx: `curl -N -X POST -H "Content-Type: text/plain" -d "Bonjour, peux-tu me dire si Stéphane Philippart a des talks à Devoxx ?" http://localhost:8080/chatbot-api`
- - add `quarkus-rest-jackson` and `quarkus-rest-client-jackson` extension and remove the `quarkus-rest` extension: `11-add-quarkus-rest-ext.sh`
- - add rest client configuration in [application.properties](./jarvis_app/src/main/resources/application.properties) (`12-app-rest-client-cfg`)
- - create [DevoxxCFPService](./jarvis_app/src/main/java/fr/wilda/fullstack/services/DevoxxCFPService.java)
-  - add interface annotation (`13-app-add-devoxx-svc-annot`)
-  - add `getConferences` method (`14-app-add-devoxx-getConf`)
- - create [DevoxxCFPResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java)
-  - add root path `/devoxx-talks` (`15-app-devoxx-resource-path`)
-  - add logger (`16-app-devoxx-resource-logger`)
-  - inject rest client (`17-app-devoxx-resource-rest-client`)
-  - add `getConferences` method annotation (`18-app-devoxx-resource-get-conferences`) 
-  - add `getConferences` method body (`19-app-devoxx-resource-get-conf-body`)
-  - test API : `curl http://localhost:8080/devoxx-talks`
- - add the `langchain4j-ovh-ai` dependecy in the [pom.xml](./jarvis_app/pom.xml) (`20-app-ovhai-dependency`)
- - add `quarkus-langchain4j-pgvector, quarkus-langchain4j-easy-rag` extensions (`21-add-quarkus-pgvector-rag-ext.sh`)
- - add RAG parameters in [application.properties](./jarvis_app/src/main/resources/application.properties) (`22-app-rag-cfg`)
- - create [RegisterOVHEmbededModel](./jarvis_app/src/main/java/fr/wilda/fullstack/config/RegisterOVHEmbededModel.java)
-  - set class annotation (`23-app-embedding-model-annot`)
-  - add the `Produces` annotation (`24-app-embedding-model-producer`)
-  - configure the OVHcloud embedding model (`25-app-enbedding-model-ovh-model`)
- - create the [DevoxxDataEmbedding](./jarvis_app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbedding.java) class
-  - inject the embedding store and model (`26-app-data-embedding-svc-inject`)
-  - inject the Devoxx service (`27-app-data-devoxx-svc-inject`)
-  - ingest talks (`28-app-data-devoxx-svc-ingest`)
-  - create the `deleteAll` method (`29-app-data-devoxx-svc-deleteall`)
- - update the [DevoxxCFPResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java)
-  - inject [DevoxxDataEmbeddingService](./jarvis_app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) (`30-app-devoxx-resource-rest-embedding`)
-  - add `/synchro` and `/delete` route (`31-app-devoxx-resource-rest-synchro`)
-  - run synchronisation: `curl http://localhost:8080/devoxx-talks/synchro`
- - test again the chatbot: `curl -N -X POST -H "Content-Type: text/plain" -d "Bonjour, peux-tu me dire si Stéphane Philippart a des talks à Devoxx ?" http://localhost:8080/chatbot-api`
- - add prod configuration for DB in the [application.properties](./jarvis_app/src/main/resources/application.properties) (`32-app-db-prod-config`)
+ - add `quarkus-langchain4j-mistral-ai` extension (`1.04-add-quarkus-langchain-ext.sh`)
+ - configure extension in [application.properties](./jarvis-app/src/main/resources/application.properties) file (`1.05-app-langchain4j-cfg`)
+ - create [ChatbotService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/ChatbotService.java) interface
+  - add AI interface annotations (`1.06-app-ai-service`)
+  - add AI interface prompts (`1.07-app-ai-prompts`)
+ - create [ChatbotRestResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/ChatbotRestResource.java) class
+  - add path (`1.08-app-chatbot-rest-path`)
+  - inject rest client (`1.09-app-chatbot-rest-client`)
+  - add `ask` method anotions (`1.10-app-chatbot-rest-ask-annot`)
+  - call the model (`1.11-app-chatbot-rest-call-model`)
+ - test the chatbot: [1.12-test-chatbot.sh](./jarvis-app/1.12-test-chatbot.sh)
+ - add `quarkus-rest-jackson` and `quarkus-rest-client-jackson` extension and remove the `quarkus-rest` extension: [1.13-add-quarkus-rest-ext.sh](./jarvis-app/1.13-add-quarkus-rest-ext.sh)
+ - add rest client configuration in [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.14-app-rest-client-cfg`)
+ - create [DevoxxCFPService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxCFPService.java)
+  - add interface annotation (`1.15-app-add-devoxx-svc-annot`)
+  - add `getConferences` method (`1.16-app-add-devoxx-getConf`)
+ - create [DevoxxCFPResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java)
+  - add root path `/devoxx-talks` (`1.17-app-devoxx-resource-path`)
+  - inject rest client (`1.18-app-devoxx-resource-rest-client`)
+  - add `getConferences` method annotation (`1.19-app-devoxx-resource-get-conferences-annot`) 
+  - add `getConferences` method body (`1.20-app-devoxx-resource-get-conf-body`)
+  - test API : [1.20-test-devoxx-api.sh](./jarvis-app/1.20-test-devoxx-api.sh)
+ - add the `langchain4j-ovh-ai` dependecy in the [pom.xml](./jarvis-app/pom.xml) (`1.21-app-ovhai-dependency`)
+ - add `quarkus-langchain4j-pgvector, quarkus-langchain4j-easy-rag` extensions: [1.22-add-quarkus-pgvector-rag-ext.sh](./jarvis-app/1.22-add-quarkus-pgvector-rag-ext.sh) 
+ - add RAG parameters in [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.23-app-rag-cfg`)
+ - create [RegisterOVHEmbededModel](./jarvis-app/src/main/java/fr/wilda/fullstack/config/RegisterOVHEmbededModel.java)
+  - set class annotation (`1.24-app-embedding-model-annot`)
+  - add the `Produces` annotation (`1.25-app-embedding-model-producer`)
+  - configure the OVHcloud embedding model (`1.26-app-enbedding-model-ovh-model`)
+ - create the [DevoxxDataEmbedding](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) class
+  - inject the embedding store and model (`1.27-app-data-embedding-svc-inject`)
+  - inject the Devoxx service (`1.28-app-data-devoxx-svc-inject`)
+  - ingest talks (`1.29-app-data-devoxx-svc-ingest`)
+  - create the `deleteAll` method (`1.30-app-data-devoxx-svc-deleteall`)
+ - update the [DevoxxCFPResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java)
+  - inject [DevoxxDataEmbeddingService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) (`1.31-app-devoxx-resource-rest-embedding`)
+  - add `/synchro` and `/delete` route (`1.32-app-devoxx-resource-rest-synchro`)
+  - run synchronisation: [1.33-test-synchro.sh](./jarvis-app/1.33-test-synchro.sh)
+ - test again the chatbot: [1.34-test-chatbot-after-synchro.sh](./jarvis-app/1.12-test-chatbot.sh)
+ - add prod configuration for DB in the [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.35-app-db-prod-config`)
 
 ## 🎨 Frontend 🎨
- - add the 'quarkus-qute-web' extension (`33-add-quarkus-qute-ext.sh`)
- - create the [devoxxconference.html](./jarvis_app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
-  - add the HTML code to call the template (`34-app-devoxx-confs-html`)
- - update [DevoxxCFPResource.java](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
-  - inject the template (`35-app-devoxx-resource-template-inject`)
-  - create the `index` endpoint (`36-app-devoxx-resource-template-index`)
-  - create the `template` endpoint (`37-app-devoxx-resource-template`)
+ - add the 'quarkus-qute-web' extension [1.35-add-quarkus-qute-ext.sh](./jarvis-app/1.35-add-quarkus-qute-ext.sh)
+ - create the [devoxxconference.html](./jarvis-app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
+  - add the HTML code to call the template (`1.36-app-devoxx-confs-html`)
+ - update [DevoxxCFPResource.java](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
+  - inject the template (`1.37-app-devoxx-resource-template-inject`)
+  - create the `index` endpoint (`1.38-app-devoxx-resource-template-index`)
+  - create the `template` endpoint (`1.39-app-devoxx-resource-template`)
  - test the application to display Devoxx talks: `http://localhost:8080/devoxx-talks/index`
  - dev UI: `http://localhost:8080/q/dev-ui/welcome`
- - add `quarkus-websockets-next` extension (`38-add-quarkus-websockets-ext.sh`)
- - create the [ChatBotWebsocketResource](./jarvis_app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
-  - add the `WebSocket` annotation (`39-app-chatbot-ws-annot`)
-  - inject `ChabotService` (`40-app-chatbot-ws-inject-svc`)
-  - create the `onMessage` method (`41-app-chatbot-ws-on-message`)
+ - add `quarkus-websockets-next` extension: [1.40-add-quarkus-websocket-ext.sh](./jarvis-app/1.40-add-quarkus-websocket-ext.sh)
+ - create the [ChatBotWebsocketResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
+  - add the `WebSocket` annotation (`1.41-app-chatbot-ws-annot`)
+  - inject `ChabotService` (`1.42-app-chatbot-ws-inject-svc`)
+  - create the `onMessage` method (`1.43-app-chatbot-ws-on-message`)
   - test the chatbot: `http://localhost:8080/`
 
-# 🧩 02 - Infrastructure as Code : [jarvis_iac](./jarvis_iac) 🧩
+# 🧩 02 - Infrastructure as Code : [jarvis-iac](./jarvis-iac) 🧩
 
-  - create the pulumi project: [_init/42-iac-create.sh](./_init/42-iac-create.sh)
-  - create the [JarvisIaC](./jarvis_iac/src/JarvisIaC.java) class
-    - add the shebank directive (`01-iac-shebang`)
-    - add dependencies (`02-iac-dependencies`)
-    - declare the OVHcloud service (`03-iac-ovhcloud-serviceId`)
-    - set timeout (`04-iac-timeout`)
+  - create the pulumi project: [_init/2.01-iac-create.sh](./_init/2.01-iac-create.sh)
+  - create the [JarvisIaC](./jarvis-iac/src/JarvisIaC.java) class
+    - add the shebank directive (`2.02-iac-shebang`)
+    - add dependencies (`2.03-iac-dependencies`)
+    - declare the OVHcloud service (`2.04-iac-ovhcloud-serviceId`)
+    - set timeout (`2.05-iac-timeout`)
     - create the kubernetes
-      - declare the main configurations (`05-iac-kube-details`)
-      - declare the nodepool (`06-iac-kube-nodepool-details`)
-      - export kubeconfig (`07-iac-kube-kubeconfig`)
+      - declare the main configurations (`2.06-iac-kube-details`)
+      - declare the nodepool (`2.07-iac-kube-nodepool-details`)
+      - export kubeconfig (`2.08-iac-kube-kubeconfig`)
     - create the database
-      - delacre the main configuration (`08-iac-db-details`)
-      - declare user for PostgreSQL (`09-iac-db-postgres-user`)
-      - declare PostgreSQL instance (`10-iac-db-postgres-instance`)
-      - export DB configuations (`11-iac-db-conf-export`)
-    - call the two methods in main (`12-iac-call-kube`) (`13-iac-call-db`)
-  - set new runtime configuration in [Pulumi.yaml](./jarvis_iac/Pulumi.yaml) file (`14-pulumi-new-runtime-cfg`)
-  - add OVHcloud provider (`15-iac-ovh-provider.sh`)
-  - run the infrastructure creation (`16-iac-pulumi-up`)
+      - delacre the main configuration (`2.09-iac-db-details`)
+      - declare user for PostgreSQL (`2.10-iac-db-postgres-user`)
+      - declare PostgreSQL instance (`2.11-iac-db-postgres-instance`)
+      - export DB configuations (`2.12-iac-db-conf-export`)
+    - call the two methods in main (`2.13-iac-call-kube`) (`2.14-iac-call-db`)
+  - set new runtime configuration in [Pulumi.yaml](./jarvis-iac/Pulumi.yaml) file (`2.15-pulumi-new-runtime-cfg`)
+  - add OVHcloud provider [2.16-iac-ovh-provider.sh](./jarvis-iac/2.16-iac-ovh-provider.sh)
+  - run the infrastructure creation [2.17-iac-pulumi-up.sh](./jarvis-iac/2.17-iac-pulumi-up.sh)
 
-# 🏗️ 03 - Jenkins : [Jenkinsfile](./jarvis_app/Jenkinsfile) 🏗️
+# 🏗️ 03 - Jenkins : [Jenkinsfile](./jarvis-app/Jenkinsfile) 🏗️
 
-  - create the [Jenkinsfile](./jarvis_app/Jenkinsfile) file
-  - create a pipeline (`01-jenkins-pipeline`)
-  - create the `📦 Build Quarkus app ⚡️` stage (`02-jenkins-app-build`)
-  - create the `🐳 Build Docker image 🐳` stage (`03-jenkins-docker-build`)
-  - create the `🏷️ Tag et Push dans GitHub 🐙` stage (`04-jenkins-github-tag`)
-  - create the `🪪 Release GitHub 🪪` stage (`05-jenkins-github-release`)
-  - create the post pipeline stage (` 06-jenkins-post-pipeline`)
+  - create the [Jenkinsfile](./jarvis-app/Jenkinsfile) file
+  - create a pipeline (`3.01-jenkins-pipeline`)
+  - create the `📦 Build Quarkus app ⚡️` stage (`3.02-jenkins-app-build`)
+  - create the `🐳 Build Docker image 🐳` stage (`3.03-jenkins-docker-build`)
+  - create the `🏷️ Tag et Push dans GitHub 🐙` stage (`3.04-jenkins-github-tag`)
+  - create the `🪪 Release GitHub 🪪` stage (`3.05-jenkins-github-release`)
+  - create the post pipeline stage (`3.06-jenkins-post-pipeline`)
   - run the pipeline in Jenkins (`http://51.210.251.111:8080`)
 
 # 🤖 04 - Jarvis operator : [jarvis_operator](./jarvis_operator) 🤖

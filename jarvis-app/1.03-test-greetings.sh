@@ -9,5 +9,5 @@ clear
 
 bat -P -r 12: $(basename "$0")
 
-# Create native executable
-quarkus build --native
+# Test greeting endpoints
+curl http://localhost:8080/hello
