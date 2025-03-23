@@ -6,15 +6,15 @@ import io.quarkus.websockets.next.WebSocket;
 import io.smallrye.mutiny.Multi;
 import jakarta.inject.Inject;
 
-// 1.41-app-chatbot-ws-annot
+// 1.42-app-chatbot-ws-annot
 @WebSocket(path = "/chatbot-ws")
 public class ChatBotWebsocketResource {
 
-  // 1.42-app-chatbot-ws-inject-svc
+  // 1.43-app-chatbot-ws-inject-svc
   @Inject
   ChatbotService chatbotService;
 
-  // 1.43-app-chatbot-ws-on-message
+  // 1.44-app-chatbot-ws-on-message
   @OnTextMessage
   public Multi<String> onMessage(String message) {
     return chatbotService.askAQuestion(message);
