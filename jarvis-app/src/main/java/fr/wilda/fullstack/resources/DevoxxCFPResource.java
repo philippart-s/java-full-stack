@@ -20,17 +20,16 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-// 15-app-devoxx-resource-path
+// 1.17-app-devoxx-resource-path
 @Path("/devoxx-talks")
 public class DevoxxCFPResource {
-  // 16-app-devoxx-resource-logger
   private static final Logger _LOG = LoggerFactory.getLogger(DevoxxCFPResource.class);
 
-  // 17-app-devoxx-resource-rest-client
+  // 1.18-app-devoxx-resource-rest-client
   @RestClient
   DevoxxCFPService devoxxCFP;
 
-  // 30-app-devoxx-resource-rest-embedding
+  // 1.31-app-devoxx-resource-rest-embedding
   @Inject
   DevoxxDataEmbeddingService devoxxDataEmbedding;
 
@@ -39,11 +38,11 @@ public class DevoxxCFPResource {
   @Location("DevoxxCFPResource/devoxxconference.html")
   Template devoxxconference;
 
-  // 18-app-devoxx-resource-get-conferences-annot
+  // 1.19-app-devoxx-resource-get-conferences-annot
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public List<Conference> getConferences() {
-    // 19-app-devoxx-resource-get-conf-body
+    // 1.20-app-devoxx-resource-get-conf-body
     List<Conference> devoxxConferences = devoxxCFP.getConferences();
 
     _LOG.info("Nombre de conférences à Devoxx : {}", devoxxConferences.size());
@@ -71,7 +70,7 @@ public class DevoxxCFPResource {
     return devoxxconference.data("conferences", devoxxCFP.getConferences().subList(0, 10));
   }
 
-  // 31-app-devoxx-resource-rest-synchro
+  // 1.32-app-devoxx-resource-rest-synchro
   @GET
   @Path("/synchro")
   public void synchro() {

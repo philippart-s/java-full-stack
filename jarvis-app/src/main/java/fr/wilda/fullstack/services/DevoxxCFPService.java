@@ -9,12 +9,12 @@ import fr.wilda.fullstack.dto.Conference;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 
-// 13-app-add-devoxx-svc-annot
+// 1.15-app-add-devoxx-svc-annot
 @RegisterRestClient
 @ClientHeaderParam(name = "Content-Type", value = "application/json")
 public interface DevoxxCFPService {
 
-  // 14-app-add-devoxx-getConf
+  // 1.16-app-add-devoxx-getConf
   @GET
   @Path("talks")
   public List<Conference> getConferences();
