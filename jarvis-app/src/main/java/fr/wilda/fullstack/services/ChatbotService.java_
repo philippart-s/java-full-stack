@@ -1,0 +1,6 @@
+package fr.wilda.fullstack.services;
+
+// 1.06-app-ai-service
+public interface ChatbotService {
+  // 1.07-app-ai-prompts
+}

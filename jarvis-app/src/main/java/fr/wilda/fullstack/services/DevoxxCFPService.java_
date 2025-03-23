@@ -1,0 +1,7 @@
+package fr.wilda.fullstack.services;
+
+// 1.15-app-add-devoxx-svc-annot
+public interface DevoxxCFPService {
+
+  // 1.16-app-add-devoxx-getConf
+}

@@ -1,9 +1,6 @@
 package fr.wilda.fullstack.config;
 
 import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.model.ovhai.OvhAiEmbeddingModel;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Produces;
 
 // 1.24-app-embedding-model-annot
 public class RegisterOVHEmbededModel {

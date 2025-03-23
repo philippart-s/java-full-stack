@@ -1,24 +1,10 @@
 package fr.wilda.fullstack.resources;
 
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.wilda.fullstack.dto.Conference;
-import fr.wilda.fullstack.services.DevoxxCFPService;
-import fr.wilda.fullstack.services.DevoxxDataEmbeddingService;
-import io.quarkus.qute.Location;
-import io.quarkus.qute.Template;
-import io.quarkus.qute.TemplateInstance;
-import io.smallrye.common.annotation.Blocking;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
 
 // 1.17-app-devoxx-resource-path
 public class DevoxxCFPResource {
