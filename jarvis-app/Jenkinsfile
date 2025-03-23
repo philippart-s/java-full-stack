@@ -1,10 +1,10 @@
 
-// 01-jenkins-pipeline
+// 3.01-jenkins-pipeline
 pipeline {
     agent any
 
     stages {
-        // 02-jenkins-app-build
+        // 3.02-jenkins-app-build
         stage('📦 Build Quarkus app ⚡️') {
             steps {
                 dir('jarvis_app') {
@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        // 03-jenkins-docker-build
+        // 3.03-jenkins-docker-build
         stage('🐳 Build Docker image 🐳') {
             steps {
                 dir('jarvis_app') {
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-        // 04-jenkins-github-tag
+        // 3.04-jenkins-github-tag
         stage('🏷️ Tag et Push dans GitHub 🐙') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
@@ -39,7 +39,7 @@ pipeline {
                 }
             }
         }
-        // 05-jenkins-github-release
+        // 3.05-jenkins-github-release
         stage('🪪 Release GitHub 🪪') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
@@ -52,7 +52,7 @@ pipeline {
             }
         }
     }
-    // 06-jenkins-post-pipeline
+    // 3.06-jenkins-post-pipeline
     post {
         success {
             echo '✅ Déploiement réussi ! 🤩'

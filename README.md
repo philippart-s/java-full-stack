@@ -95,12 +95,12 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
 # 🏗️ 03 - Jenkins : [Jenkinsfile](./jarvis-app/Jenkinsfile) 🏗️
 
   - create the [Jenkinsfile](./jarvis-app/Jenkinsfile) file
-  - create a pipeline (`01-jenkins-pipeline`)
-  - create the `📦 Build Quarkus app ⚡️` stage (`02-jenkins-app-build`)
-  - create the `🐳 Build Docker image 🐳` stage (`03-jenkins-docker-build`)
-  - create the `🏷️ Tag et Push dans GitHub 🐙` stage (`04-jenkins-github-tag`)
-  - create the `🪪 Release GitHub 🪪` stage (`05-jenkins-github-release`)
-  - create the post pipeline stage (` 06-jenkins-post-pipeline`)
+  - create a pipeline (`3.01-jenkins-pipeline`)
+  - create the `📦 Build Quarkus app ⚡️` stage (`3.02-jenkins-app-build`)
+  - create the `🐳 Build Docker image 🐳` stage (`3.03-jenkins-docker-build`)
+  - create the `🏷️ Tag et Push dans GitHub 🐙` stage (`3.04-jenkins-github-tag`)
+  - create the `🪪 Release GitHub 🪪` stage (`3.05-jenkins-github-release`)
+  - create the post pipeline stage (`3.06-jenkins-post-pipeline`)
   - run the pipeline in Jenkins (`http://51.210.251.111:8080`)
 
 # 🤖 04 - Jarvis operator : [jarvis_operator](./jarvis_operator) 🤖
