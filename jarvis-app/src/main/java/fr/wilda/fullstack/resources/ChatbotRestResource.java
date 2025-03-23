@@ -13,20 +13,13 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 // 1.08-app-chatbot-rest-path
-@Path("chatbot-api")
 public class ChatbotRestResource {
   private static final Logger _LOG = LoggerFactory.getLogger(ChatbotRestResource.class);
 
   // 1.09-app-chatbot-rest-client
-  @Inject
-  ChatbotService chatbotService;
-  
+   
   // 1.10-app-chatbot-rest-ask-annot
-  @POST
-  @Consumes(MediaType.TEXT_PLAIN)
-  @Produces(MediaType.TEXT_PLAIN)
   public Multi<String> ask(String question) {
     // 1.11-app-chatbot-rest-call-model
-    return chatbotService.askAQuestion(question);
   }
 }

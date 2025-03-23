@@ -18,30 +18,15 @@ public class DevoxxDataEmbeddingService {
   private static final Logger _LOG = LoggerFactory.getLogger(DevoxxDataEmbeddingService.class);
 
   // 1.27-app-data-embedding-svc-inject
-  @Inject
-  EmbeddingModel embeddingModel;
-
-  @Inject
-  EmbeddingStore<TextSegment> embeddingStore;
-
+  
   // 1.28-app-data-devoxx-svc-inject
-  @RestClient
-  DevoxxCFPService devoxxCFP;
 
   /**
    * Take the Devoxx talks and transform them into a vector to add each of vectors in the store.
    */
   public void ingest() {
     // 1.29-app-data-devoxx-svc-ingest
-    List<Conference> talks = devoxxCFP.getConferences();
 
-    for (Conference conference : talks) {
-      _LOG.info("Talk ingéré : {}", conference.getTitle());
-      embeddingStore.add(embeddingModel
-          .embed(conference.getSpeakers().toString())
-          .content(),
-          TextSegment.from(conference.toString()));
-    }
   }
 
   /**
@@ -49,6 +34,6 @@ public class DevoxxDataEmbeddingService {
    */
   public void deleteAll() {
     // 1.30-app-data-devoxx-svc-deleteall
-    embeddingStore.removeAll();
+    
   }
 }
