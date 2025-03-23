@@ -26,7 +26,8 @@ replay_pid*
 # _init folder
 _init/jarvis/
 _init/jarvis_iac/
-_init/jarvis-operator
+_init/jarvis-operator/
+_init/jarvis-cli-init/
 
 # Configuration
 .env
