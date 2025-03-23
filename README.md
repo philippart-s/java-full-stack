@@ -164,6 +164,30 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
     - whitelist the managed kubernetes on the DB
     - run [4.42-test-mks-jarvis.sh](./jarvis-operator/4.42-test-mks-jarvis.sh)
 
+# 05 - 💻 Jarvis CLI 💻
 
-  
+  - run [5.01-cli-create.sh](./_init/5.01-cli-create.sh)
+  - run [5.02-check-dependencies.sh](./jarvis-cli/5.02-check-dependencies.sh)
+  - run [5.03-start-quarkus-dev.sh](./jarvis-cli/5.03-start-quarkus-dev.sh) and test default CLI
+  - create [JarvisAPIService](./jarvis-cli/src/main/java/fr/wilda/fullstack/sdk/JarvisAPIService.java) interface
+    - add the annotation (`5.04-svc-annotation`)
+    - add endpoints call (`5.05-svc-endpoint`)
+    - update the [application.properties](./jarvis-cli/src/main/resources/application.properties) file (`5.06-rest-client-cfg`)
+  - create [JarvisCommand](./jarvis-cli/src/main/java/fr/wilda/fullstack/JarvisCommand.java) class
+    - add `@Command` annotation (`5.07-jarvis-annot`)
+    - inject rest client annotation (`5.08-jarvis-rest-client`)
+    - add parameter (`5.09-jarvis-param`)
+    - add `call` method (`5.10-call-service`)
+    - add `@TopCommand` annotation
+  - test the CLI `Est-ce que Stéphane Philippart a un talk à Devoxx France ?`
+  - create [DevoxxSubCommand](./jarvis-cli/src/main/java/fr/wilda/fullstack/DevoxxSubCommand.java) class
+    - add the annotation (`5.11-devoxx-svc-annotation`)
+    - inject rest client annotation (`5.12-devoxx-rest-client`)
+    - add options (`5.13-devoxx-options`)
+    - add `call` (`5.14-devoxx-call`)
+  - add `DevoxxSubCommand` to the `JarvisCommand` class
+  - create native CLI
+    - set logs (`5.15-prod-logs`)
+    - run [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
+    - test CLI 
   
