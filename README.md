@@ -70,27 +70,27 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - create the `onMessage` method (`1.43-app-chatbot-ws-on-message`)
   - test the chatbot: `http://localhost:8080/`
 
-# 🧩 02 - Infrastructure as Code : [jarvis_iac](./jarvis_iac) 🧩
+# 🧩 02 - Infrastructure as Code : [jarvis-iac](./jarvis-iac) 🧩
 
-  - create the pulumi project: [_init/42-iac-create.sh](./_init/42-iac-create.sh)
-  - create the [JarvisIaC](./jarvis_iac/src/JarvisIaC.java) class
-    - add the shebank directive (`01-iac-shebang`)
-    - add dependencies (`02-iac-dependencies`)
-    - declare the OVHcloud service (`03-iac-ovhcloud-serviceId`)
-    - set timeout (`04-iac-timeout`)
+  - create the pulumi project: [_init/2.01-iac-create.sh](./_init/2.01-iac-create.sh)
+  - create the [JarvisIaC](./jarvis-iac/src/JarvisIaC.java) class
+    - add the shebank directive (`2.02-iac-shebang`)
+    - add dependencies (`2.03-iac-dependencies`)
+    - declare the OVHcloud service (`2.04-iac-ovhcloud-serviceId`)
+    - set timeout (`2.05-iac-timeout`)
     - create the kubernetes
-      - declare the main configurations (`05-iac-kube-details`)
-      - declare the nodepool (`06-iac-kube-nodepool-details`)
-      - export kubeconfig (`07-iac-kube-kubeconfig`)
+      - declare the main configurations (`2.06-iac-kube-details`)
+      - declare the nodepool (`2.07-iac-kube-nodepool-details`)
+      - export kubeconfig (`2.08-iac-kube-kubeconfig`)
     - create the database
-      - delacre the main configuration (`08-iac-db-details`)
-      - declare user for PostgreSQL (`09-iac-db-postgres-user`)
-      - declare PostgreSQL instance (`10-iac-db-postgres-instance`)
-      - export DB configuations (`11-iac-db-conf-export`)
-    - call the two methods in main (`12-iac-call-kube`) (`13-iac-call-db`)
-  - set new runtime configuration in [Pulumi.yaml](./jarvis_iac/Pulumi.yaml) file (`14-pulumi-new-runtime-cfg`)
-  - add OVHcloud provider (`15-iac-ovh-provider.sh`)
-  - run the infrastructure creation (`16-iac-pulumi-up`)
+      - delacre the main configuration (`2.09-iac-db-details`)
+      - declare user for PostgreSQL (`2.10-iac-db-postgres-user`)
+      - declare PostgreSQL instance (`2.11-iac-db-postgres-instance`)
+      - export DB configuations (`2.12-iac-db-conf-export`)
+    - call the two methods in main (`2.13-iac-call-kube`) (`2.14-iac-call-db`)
+  - set new runtime configuration in [Pulumi.yaml](./jarvis-iac/Pulumi.yaml) file (`2.15-pulumi-new-runtime-cfg`)
+  - add OVHcloud provider [2.16-iac-ovh-provider.sh](./jarvis-iac/2.16-iac-ovh-provider.sh)
+  - run the infrastructure creation [2.17-iac-pulumi-up.sh](./jarvis-iac/2.17-iac-pulumi-up.sh)
 
 # 🏗️ 03 - Jenkins : [Jenkinsfile](./jarvis-app/Jenkinsfile) 🏗️
 

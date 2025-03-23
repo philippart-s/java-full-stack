@@ -9,8 +9,8 @@ clear
 
 bat -P -r 15: $(basename "$0")
 
-mkdir ./jarvis_iac
-cd ./jarvis_iac
+mkdir ./jarvis-iac
+cd ./jarvis-iac
 
 # Login locally at Pulumi
 pulumi login --local
