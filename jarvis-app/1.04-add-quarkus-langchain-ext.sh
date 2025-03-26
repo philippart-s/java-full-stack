@@ -9,5 +9,5 @@ clear
 
 bat -P -r 12: $(basename "$0")
 
-# Add quarkus-rest-jackson Quarkus extension to do some REST call and expose some REST API
-quarkus ext add io.quarkiverse.langchain4j:quarkus-langchain4j-mistral-ai
+# Add LangChain4J extension
+quarkus ext add io.quarkiverse.langchain4j:quarkus-langchain4j-mistral-ai:0.25.0

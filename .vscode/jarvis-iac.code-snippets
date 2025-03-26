@@ -1,0 +1,182 @@
+{
+  "2.03-iac-shebang": {
+    "body": [
+      "///usr/bin/env jbang \"\\$0\" \"\\$@\" ; exit \\$?",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.03-iac-shebang",
+    "scope": "java"
+  },
+  "2.04-iac-dependencies": {
+    "body": [
+      "//DEPS com.pulumi:pulumi:1.+",
+      "//DEPS com.ovhcloud.pulumi.ovh:pulumi-ovh:1.6.0",
+      "//DEPS org.slf4j:slf4j-api:2.1.0-alpha1",
+      "//DEPS org.slf4j:slf4j-log4j12:2.1.0-alpha1",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.04-iac-dependencies",
+    "scope": "java"
+  },
+  "2.05-iac-ovhcloud-serviceId": {
+    "body": [
+      "private final static String OVH_CLOUD_PROJECT_SERVICE = System.getenv(\"OVH_CLOUD_PROJECT_SERVICE\");",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.05-iac-ovhcloud-serviceId",
+    "scope": "java"
+  },
+  "2.06-iac-timeout": {
+    "body": [
+      "private final static CustomResourceOptions timeout = CustomResourceOptions.builder()",
+      ".customTimeouts(",
+      "    CustomTimeouts.builder()",
+      "        .create(Duration.ofMinutes(60))",
+      "        .build()).build();",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.06-iac-timeout",
+    "scope": "java"
+  },
+  "2.07-iac-kube-details": {
+    "body": [
+      "KubeArgs kubeDetails = KubeArgs.builder()",
+      "      .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
+      "      .name(\"jarvis-devoxx\")",
+      "      .region(\"GRA7\")",
+      ".build();",
+      "Kube kube = new Kube(\"jarvis-devoxx\", kubeDetails, timeout);",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.07-iac-kube-details",
+    "scope": "java"
+  },
+  "2.08-iac-kube-nodepool-details": {
+    "body": [
+      "KubeNodePoolArgs nodePoolDetails = KubeNodePoolArgs.builder()",
+      "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
+      "    .name(\"jarvis-devoxx-nodepool\")",
+      "    .flavorName(\"d2-4\")",
+      "    .kubeId(kube.id().asPlaintext())",
+      "    .minNodes(1)",
+      "    .maxNodes(1)",
+      ".build();",
+      "KubeNodePool nodePool = new KubeNodePool(\"jarvis-devoxx-nodepool\", nodePoolDetails, timeout);",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.08-iac-kube-nodepool-details",
+    "scope": "java"
+  },
+  "2.09-iac-kube-kubeconfig": {
+    "body": [
+      "ctx.export(\"kubeconfig\", kube.kubeconfig());",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.09-iac-kube-kubeconfig",
+    "scope": "java"
+  },
+  "2.10-iac-db-details": {
+    "body": [
+      "DatabaseNodeArgs databaseNodeArgs = DatabaseNodeArgs.builder()",
+      ".region(\"GRA\")",
+      ".build();",
+      "",
+      "DatabaseArgs databaseArgs = DatabaseArgs.builder()",
+      "    .description(\"jarvis-database\")",
+      "    .flavor(\"db1-4\")",
+      "    .plan(\"essential\")",
+      "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
+      "    .engine(\"postgresql\")",
+      "    .version(\"16\")",
+      "    .nodes(databaseNodeArgs)",
+      "    .build();",
+      "",
+      "Database database = new Database(\"jarvis-database\", databaseArgs, timeout);",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.10-iac-db-details",
+    "scope": "java"
+  },
+  "2.11-iac-db-postgres-user": {
+    "body": [
+      "PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()",
+      "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
+      "    .clusterId(database.id())",
+      ".build();",
+      "",
+      "PostgresSqlUser postgresSqlUser = new PostgresSqlUser(\"avnadmin\", postgresSqlUserArgs, timeout);",
+      "postgresSqlUser.passwordReset();",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.11-iac-db-postgres-user",
+    "scope": "java"
+  },
+  "2.12-iac-db-postgres-instance": {
+    "body": [
+      "DatabaseInstanceArgs databaseInstanceArgs = DatabaseInstanceArgs.builder()",
+      "    .clusterId(database.id())",
+      "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
+      "    .engine(\"postgresql\")",
+      "    .name(\"jarvis-ai-embeddings\")",
+      "    .build();",
+      "",
+      "DatabaseInstance databaseInstance = new DatabaseInstance(\"jarvis-ai-embeddings\", databaseInstanceArgs, timeout);",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.12-iac-db-postgres-instance",
+    "scope": "java"
+  },
+  "2.13-iac-db-conf-export": {
+    "body": [
+      "ctx. export(\"db_port\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().port()));",
+      "ctx. export(\"db_host\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().domain()));",
+      "ctx. export(\"db_id\", database.id());",
+      "",
+      "ctx.export(\"avnadmin-password\", postgresSqlUser.password());",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.13-iac-db-conf-export",
+    "scope": "java"
+  },
+  "2.14-iac-call-kube": {
+    "body": [
+      "createK8s(ctx);",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.14-iac-call-kube",
+    "scope": "java"
+  },
+  "2.15-iac-call-db": {
+    "body": [
+      "createDB(ctx);",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.15-iac-call-db",
+    "scope": "java"
+  },
+  "2.16-pulumi-new-runtime-cfg": {
+    "body": [
+      "runtime: ",
+      "  name: java",
+      "  options: ",
+      "    binary: src/JarvisIaC.java",
+      ""
+    ],
+    "description": "",
+    "prefix": "2.16-pulumi-new-runtime-cfg",
+    "scope": "yaml"
+  }
+}
