@@ -123,9 +123,9 @@ snippet 1.20-app-devoxx-resource-get-conf-body:
     return devoxxConferences;
 
 snippet 1.21-app-ovhai-dependency:
-  prefix: "1.21-app-ovhai-dependency"
+  prefix: "1.22-app-ovhai-dependency"
   scope: "xml"
-  name: "1.21-app-ovhai-dependency"
+  name: "1.22-app-ovhai-dependency"
   body: |
     <dependency>
       <groupId>dev.langchain4j</groupId>
@@ -133,7 +133,7 @@ snippet 1.21-app-ovhai-dependency:
       <version>1.0.0-beta1</version>
     </dependency>
 
-snippet 1.23-app-rag-cfg:
+snippet 1.24-app-rag-cfg:
   prefix: "1.23-app-rag-cfg"
   name: "1.23-app-rag-cfg"
   body: |
@@ -143,7 +143,7 @@ snippet 1.23-app-rag-cfg:
 
     quarkus.langchain4j.pgvector.drop-table-first=true
     quarkus.langchain4j.pgvector.register-vector-pg-extension=true
-    quarkus.langchain4j.pgvector.dimension=${OVH_EMBEDDING_DIMENSION}
+    quarkus.langchain4j.pgvector.dimension=\${OVH_EMBEDDING_DIMENSION}
     quarkus.langchain4j.pgvector.datasource=ai-enbeddings
 
     quarkus.langchain4j.easy-rag.min-score=0.1
@@ -153,24 +153,24 @@ snippet 1.23-app-rag-cfg:
 
     quarkus.langchain4j.embedding-model.provider=dev.langchain4j.model.ovhai.OvhAiEmbeddingModel
 
-snippet 1.24-app-embedding-model-annot:
-  prefix: "1.24-app-embedding-model-annot"
+snippet 1.25-app-embedding-model-annot:
+  prefix: "1.25-app-embedding-model-annot"
   scope: "java"
-  name: "1.24-app-embedding-model-annot"
+  name: "1.25-app-embedding-model-annot"
   body: |
     @ApplicationScoped
 
-snippet 1.25-app-embedding-model-producer:
-  prefix: "1.25-app-embedding-model-producer"
+snippet 1.26-app-embedding-model-producer:
+  prefix: "1.26-app-embedding-model-producer"
   scope: "java"
-  name: "1.25-app-embedding-model-producer"
+  name: "1.26-app-embedding-model-producer"
   body: |
     @Produces
 
-snippet 1.26-app-enbedding-model-ovh-model:
-  prefix: "1.26-app-enbedding-model-ovh-model"
+snippet 1.27-app-enbedding-model-ovh-model:
+  prefix: "1.27-app-enbedding-model-ovh-model"
   scope: "java"
-  name: "1.26-app-enbedding-model-ovh-model"
+  name: "1.27-app-enbedding-model-ovh-model"
   body: |
     return OvhAiEmbeddingModel.builder()
         .baseUrl(System.getenv("OVH_AI_EMBEDDING_MODEL_URL"))
@@ -179,10 +179,10 @@ snippet 1.26-app-enbedding-model-ovh-model:
         .logResponses(false)
         .build();
 
-snippet 1.27-app-data-embedding-svc-inject:
-  prefix: "1.27-app-data-embedding-svc-inject"
+snippet 1.28-app-data-embedding-svc-inject:
+  prefix: "1.28-app-data-embedding-svc-inject"
   scope: "java"
-  name: "1.27-app-data-embedding-svc-inject"
+  name: "1.28-app-data-embedding-svc-inject"
   body: |
     @Inject
     EmbeddingModel embeddingModel;
@@ -190,18 +190,18 @@ snippet 1.27-app-data-embedding-svc-inject:
     @Inject
     EmbeddingStore<TextSegment> embeddingStore;
 
-snippet 1.28-app-data-devoxx-svc-inject:
-  prefix: "1.28-app-data-devoxx-svc-inject"
+snippet 1.29-app-data-devoxx-svc-inject:
+  prefix: "1.29-app-data-devoxx-svc-inject"
   scope: "java"
-  name: "1.28-app-data-devoxx-svc-inject"
+  name: "1.29-app-data-devoxx-svc-inject"
   body: |
     @RestClient
     DevoxxCFPService devoxxCFP;
 
-snippet 1.29-app-data-devoxx-svc-ingest:
-  prefix: "1.29-app-data-devoxx-svc-ingest"
+snippet 1.30-app-data-devoxx-svc-ingest:
+  prefix: "1.30-app-data-devoxx-svc-ingest"
   scope: "java"
-  name: "1.29-app-data-devoxx-svc-ingest"
+  name: "1.30-app-data-devoxx-svc-ingest"
   body: |
     List<Conference> talks = devoxxCFP.getConferences();
 
@@ -213,25 +213,25 @@ snippet 1.29-app-data-devoxx-svc-ingest:
           TextSegment.from(conference.toString()));
     }
 
-snippet 1.30-app-data-devoxx-svc-deleteall:
-  prefix: "1.30-app-data-devoxx-svc-deleteall"
+snippet 1.31-app-data-devoxx-svc-deleteall:
+  prefix: "1.31-app-data-devoxx-svc-deleteall"
   scope: "java"
-  name: "1.30-app-data-devoxx-svc-deleteall"
+  name: "1.31-app-data-devoxx-svc-deleteall"
   body: |
     embeddingStore.removeAll();
 
-snippet 1.31-app-devoxx-resource-rest-embedding:
-  prefix: "1.31-app-devoxx-resource-rest-embedding"
+snippet 1.32-app-devoxx-resource-rest-embedding:
+  prefix: "1.32-app-devoxx-resource-rest-embedding"
   scope: "java"
-  name: "1.31-app-devoxx-resource-rest-embedding"
+  name: "1.32-app-devoxx-resource-rest-embedding"
   body: |
     @Inject
     DevoxxDataEmbeddingService devoxxDataEmbedding;
 
-snippet 1.32-app-devoxx-resource-rest-synchro:
-  prefix: "1.32-app-devoxx-resource-rest-synchro"
+snippet 1.33-app-devoxx-resource-rest-synchro:
+  prefix: "1.33-app-devoxx-resource-rest-synchro"
   scope: "java"
-  name: "1.32-app-devoxx-resource-rest-synchro"
+  name: "1.33-app-devoxx-resource-rest-synchro"
   body: |
     @GET
     @Path("/synchro")
@@ -246,17 +246,17 @@ snippet 1.32-app-devoxx-resource-rest-synchro:
 
     }
 
-snippet 1.35-app-db-prod-config:
-  prefix: "1.35-app-db-prod-config"
-  name: "1.35-app-db-prod-config"
+snippet 1.36-app-db-prod-config:
+  prefix: "1.36-app-db-prod-config"
+  name: "1.36-app-db-prod-config"
   body: |
     %prod.quarkus.datasource.ai-enbeddings.username=${OVH_DB_USERNAME}
     %prod.quarkus.datasource.ai-enbeddings.password=${OVH_DB_PASSWORD}
     %prod.quarkus.datasource.ai-enbeddings.jdbc.url=jdbc:postgresql://${OVH_DB_HOST}:${OVH_DB_PORT}/jarvis-ai-embeddings
 
-snippet 1.37-app-devoxx-confs-html:
-  prefix: "1.37-app-devoxx-confs-html"
-  name: "1.37-app-devoxx-confs-html"
+snippet 1.38-app-devoxx-confs-html:
+  prefix: "1.38-app-devoxx-confs-html"
+  name: "1.38-app-devoxx-confs-html"
   scope: "html"
   body: |
     <a href="/devoxx-talks/template">🎙️ Get talks 🎙️</a>
@@ -273,19 +273,19 @@ snippet 1.37-app-devoxx-confs-html:
       💥 No information to display 💥
     {/if}
 
-snippet 1.38-app-devoxx-resource-template-inject:
-  prefix: "1.38-app-devoxx-resource-template-inject"
+snippet 1.39-app-devoxx-resource-template-inject:
+  prefix: "1.39-app-devoxx-resource-template-inject"
   scope: "java"
-  name: "1.38-app-devoxx-resource-template-inject"
+  name: "1.39-app-devoxx-resource-template-inject"
   body: |
     @Inject
     @Location("DevoxxCFPResource/devoxxconference.html")
     Template devoxxconference;
 
-snippet 1.39-app-devoxx-resource-template-index:
-  prefix: "1.39-app-devoxx-resource-template-index"
+snippet 1.40-app-devoxx-resource-template-index:
+  prefix: "1.40-app-devoxx-resource-template-index"
   scope: "java"
-  name: "1.39-app-devoxx-resource-template-index"
+  name: "1.40-app-devoxx-resource-template-index"
   body: |
     @GET
     @Path("/index")
@@ -296,10 +296,10 @@ snippet 1.39-app-devoxx-resource-template-index:
       return devoxxconference.data("conferences", Collections.EMPTY_LIST);
     }
 
-snippet 1.40-app-devoxx-resource-template:
-  prefix: "1.40-app-devoxx-resource-template"
+snippet 1.41-app-devoxx-resource-template:
+  prefix: "1.41-app-devoxx-resource-template"
   scope: "java"
-  name: "1.40-app-devoxx-resource-template"
+  name: "1.41-app-devoxx-resource-template"
   body: |
     @GET
     @Path("/template")
@@ -310,25 +310,25 @@ snippet 1.40-app-devoxx-resource-template:
       return devoxxconference.data("conferences", devoxxCFP.getConferences().subList(0, 10));
     }
 
-snippet 1.42-app-chatbot-ws-annot:
-  prefix: "1.42-app-chatbot-ws-annot"
+snippet 1.43-app-chatbot-ws-annot:
+  prefix: "1.43-app-chatbot-ws-annot"
   scope: "java"
-  name: "1.42-app-chatbot-ws-annot"
+  name: "1.43-app-chatbot-ws-annot"
   body: |
     @WebSocket(path = "/chatbot-ws")
 
-snippet 1.43-app-chatbot-ws-inject-svc:
-  prefix: "1.43-app-chatbot-ws-inject-svc"
+snippet 1.44-app-chatbot-ws-inject-svc:
+  prefix: "1.44-app-chatbot-ws-inject-svc"
   scope: "java"
-  name: "1.43-app-chatbot-ws-inject-svc"
+  name: "1.44-app-chatbot-ws-inject-svc"
   body: |
     @Inject
     ChatbotService chatbotService;
 
-snippet 1.44-app-chatbot-ws-on-message:
-  prefix: "1.44-app-chatbot-ws-on-message"
+snippet 1.45-app-chatbot-ws-on-message:
+  prefix: "1.45-app-chatbot-ws-on-message"
   scope: "java"
-  name: "1.44-app-chatbot-ws-on-message"
+  name: "1.45-app-chatbot-ws-on-message"
   body: |
     @OnTextMessage
     public Multi<String> onMessage(String message) {

@@ -27,7 +27,7 @@ snippet 3.02-jenkins-app-build:
   body: |
     stage('📦 Build Quarkus app ⚡️') {
         steps {
-            dir('jarvis_app') {
+            dir('jarvis-app') {
                 sh 'mvn clean package'
             }
         }
@@ -35,12 +35,12 @@ snippet 3.02-jenkins-app-build:
 
 snippet 3.03-jenkins-docker-build:
   prefix: "3.03-jenkins-docker-build"
-  name: "3.02-jenkins-app-build"
+  name: "3.03-jenkins-docker-build"
   scope: "groovy"
   body: |
     stage('🐳 Build Docker image 🐳') {
         steps {
-            dir('jarvis_app') {
+            dir('jarvis-app') {
                 script {
                     docker.withRegistry('https://95y036e0.gra7.container-registry.ovh.net/devoxx', 'harbor') {
                         def image = docker.build('95y036e0.gra7.container-registry.ovh.net/devoxx/jarvis-app', '-f src/main/docker/Dockerfile.jvm .')

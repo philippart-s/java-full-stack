@@ -153,7 +153,7 @@
     "prefix": "1.20-app-devoxx-resource-get-conf-body",
     "scope": "java"
   },
-  "1.21-app-ovhai-dependency": {
+  "1.22-app-ovhai-dependency": {
     "body": [
       "\u003cdependency\u003e",
       "  \u003cgroupId\u003edev.langchain4j\u003c/groupId\u003e",
@@ -163,7 +163,7 @@
       ""
     ],
     "description": "",
-    "prefix": "1.21-app-ovhai-dependency",
+    "prefix": "1.22-app-ovhai-dependency",
     "scope": "xml"
   },
   "1.23-app-rag-cfg": {
@@ -174,7 +174,7 @@
       "",
       "quarkus.langchain4j.pgvector.drop-table-first=true",
       "quarkus.langchain4j.pgvector.register-vector-pg-extension=true",
-      "quarkus.langchain4j.pgvector.dimension=${OVH_EMBEDDING_DIMENSION}",
+      "quarkus.langchain4j.pgvector.dimension=\\${OVH_EMBEDDING_DIMENSION}",
       "quarkus.langchain4j.pgvector.datasource=ai-enbeddings",
       "",
       "quarkus.langchain4j.easy-rag.min-score=0.1",
@@ -189,25 +189,25 @@
     "prefix": "1.23-app-rag-cfg",
     "scope": ""
   },
-  "1.24-app-embedding-model-annot": {
+  "1.25-app-embedding-model-annot": {
     "body": [
       "@ApplicationScoped",
       ""
     ],
     "description": "",
-    "prefix": "1.24-app-embedding-model-annot",
+    "prefix": "1.25-app-embedding-model-annot",
     "scope": "java"
   },
-  "1.25-app-embedding-model-producer": {
+  "1.26-app-embedding-model-producer": {
     "body": [
       "@Produces",
       ""
     ],
     "description": "",
-    "prefix": "1.25-app-embedding-model-producer",
+    "prefix": "1.26-app-embedding-model-producer",
     "scope": "java"
   },
-  "1.26-app-enbedding-model-ovh-model": {
+  "1.27-app-enbedding-model-ovh-model": {
     "body": [
       "return OvhAiEmbeddingModel.builder()",
       "    .baseUrl(System.getenv(\"OVH_AI_EMBEDDING_MODEL_URL\"))",
@@ -218,10 +218,10 @@
       ""
     ],
     "description": "",
-    "prefix": "1.26-app-enbedding-model-ovh-model",
+    "prefix": "1.27-app-enbedding-model-ovh-model",
     "scope": "java"
   },
-  "1.27-app-data-embedding-svc-inject": {
+  "1.28-app-data-embedding-svc-inject": {
     "body": [
       "@Inject",
       "EmbeddingModel embeddingModel;",
@@ -231,20 +231,20 @@
       ""
     ],
     "description": "",
-    "prefix": "1.27-app-data-embedding-svc-inject",
+    "prefix": "1.28-app-data-embedding-svc-inject",
     "scope": "java"
   },
-  "1.28-app-data-devoxx-svc-inject": {
+  "1.29-app-data-devoxx-svc-inject": {
     "body": [
       "@RestClient",
       "DevoxxCFPService devoxxCFP;",
       ""
     ],
     "description": "",
-    "prefix": "1.28-app-data-devoxx-svc-inject",
+    "prefix": "1.29-app-data-devoxx-svc-inject",
     "scope": "java"
   },
-  "1.29-app-data-devoxx-svc-ingest": {
+  "1.30-app-data-devoxx-svc-ingest": {
     "body": [
       "List\u003cConference\u003e talks = devoxxCFP.getConferences();",
       "",
@@ -258,29 +258,29 @@
       ""
     ],
     "description": "",
-    "prefix": "1.29-app-data-devoxx-svc-ingest",
+    "prefix": "1.30-app-data-devoxx-svc-ingest",
     "scope": "java"
   },
-  "1.30-app-data-devoxx-svc-deleteall": {
+  "1.31-app-data-devoxx-svc-deleteall": {
     "body": [
       "embeddingStore.removeAll();",
       ""
     ],
     "description": "",
-    "prefix": "1.30-app-data-devoxx-svc-deleteall",
+    "prefix": "1.31-app-data-devoxx-svc-deleteall",
     "scope": "java"
   },
-  "1.31-app-devoxx-resource-rest-embedding": {
+  "1.32-app-devoxx-resource-rest-embedding": {
     "body": [
       "@Inject",
       "DevoxxDataEmbeddingService devoxxDataEmbedding;",
       ""
     ],
     "description": "",
-    "prefix": "1.31-app-devoxx-resource-rest-embedding",
+    "prefix": "1.32-app-devoxx-resource-rest-embedding",
     "scope": "java"
   },
-  "1.32-app-devoxx-resource-rest-synchro": {
+  "1.33-app-devoxx-resource-rest-synchro": {
     "body": [
       "@GET",
       "@Path(\"/synchro\")",
@@ -297,10 +297,10 @@
       ""
     ],
     "description": "",
-    "prefix": "1.32-app-devoxx-resource-rest-synchro",
+    "prefix": "1.33-app-devoxx-resource-rest-synchro",
     "scope": "java"
   },
-  "1.35-app-db-prod-config": {
+  "1.36-app-db-prod-config": {
     "body": [
       "%prod.quarkus.datasource.ai-enbeddings.username=${OVH_DB_USERNAME}",
       "%prod.quarkus.datasource.ai-enbeddings.password=${OVH_DB_PASSWORD}",
@@ -308,10 +308,10 @@
       ""
     ],
     "description": "",
-    "prefix": "1.35-app-db-prod-config",
+    "prefix": "1.36-app-db-prod-config",
     "scope": ""
   },
-  "1.37-app-devoxx-confs-html": {
+  "1.38-app-devoxx-confs-html": {
     "body": [
       "\u003ca href=\"/devoxx-talks/template\"\u003e🎙️ Get talks 🎙️\u003c/a\u003e",
       "\u003c/br\u003e",
@@ -329,10 +329,10 @@
       ""
     ],
     "description": "",
-    "prefix": "1.37-app-devoxx-confs-html",
+    "prefix": "1.38-app-devoxx-confs-html",
     "scope": "html"
   },
-  "1.38-app-devoxx-resource-template-inject": {
+  "1.39-app-devoxx-resource-template-inject": {
     "body": [
       "@Inject",
       "@Location(\"DevoxxCFPResource/devoxxconference.html\")",
@@ -340,10 +340,10 @@
       ""
     ],
     "description": "",
-    "prefix": "1.38-app-devoxx-resource-template-inject",
+    "prefix": "1.39-app-devoxx-resource-template-inject",
     "scope": "java"
   },
-  "1.39-app-devoxx-resource-template-index": {
+  "1.40-app-devoxx-resource-template-index": {
     "body": [
       "@GET",
       "@Path(\"/index\")",
@@ -356,10 +356,10 @@
       ""
     ],
     "description": "",
-    "prefix": "1.39-app-devoxx-resource-template-index",
+    "prefix": "1.40-app-devoxx-resource-template-index",
     "scope": "java"
   },
-  "1.40-app-devoxx-resource-template": {
+  "1.41-app-devoxx-resource-template": {
     "body": [
       "@GET",
       "@Path(\"/template\")",
@@ -372,29 +372,29 @@
       ""
     ],
     "description": "",
-    "prefix": "1.40-app-devoxx-resource-template",
+    "prefix": "1.41-app-devoxx-resource-template",
     "scope": "java"
   },
-  "1.42-app-chatbot-ws-annot": {
+  "1.43-app-chatbot-ws-annot": {
     "body": [
       "@WebSocket(path = \"/chatbot-ws\")",
       ""
     ],
     "description": "",
-    "prefix": "1.42-app-chatbot-ws-annot",
+    "prefix": "1.43-app-chatbot-ws-annot",
     "scope": "java"
   },
-  "1.43-app-chatbot-ws-inject-svc": {
+  "1.44-app-chatbot-ws-inject-svc": {
     "body": [
       "@Inject",
       "ChatbotService chatbotService;",
       ""
     ],
     "description": "",
-    "prefix": "1.43-app-chatbot-ws-inject-svc",
+    "prefix": "1.44-app-chatbot-ws-inject-svc",
     "scope": "java"
   },
-  "1.44-app-chatbot-ws-on-message": {
+  "1.45-app-chatbot-ws-on-message": {
     "body": [
       "@OnTextMessage",
       "public Multi\u003cString\u003e onMessage(String message) {",
@@ -402,7 +402,7 @@
       "}"
     ],
     "description": "",
-    "prefix": "1.44-app-chatbot-ws-on-message",
+    "prefix": "1.45-app-chatbot-ws-on-message",
     "scope": "java"
   }
 }

@@ -1,13 +1,13 @@
-snippet 2.02-iac-shebang:
-  prefix: "2.02-iac-shebang"
-  name: "2.02-iac-shebang"
+snippet 2.03-iac-shebang:
+  prefix: "2.03-iac-shebang"
+  name: "2.03-iac-shebang"
   scope: "java"
   body: |
     ///usr/bin/env jbang "\$0" "\$@" ; exit \$?
 
-snippet 2.03-iac-dependencies:
-  prefix: "2.03-iac-dependencies"
-  name: "2.03-iac-dependencies"
+snippet 2.04-iac-dependencies:
+  prefix: "2.04-iac-dependencies"
+  name: "2.04-iac-dependencies"
   scope: "java"
   body: |
     //DEPS com.pulumi:pulumi:1.+
@@ -15,16 +15,16 @@ snippet 2.03-iac-dependencies:
     //DEPS org.slf4j:slf4j-api:2.1.0-alpha1
     //DEPS org.slf4j:slf4j-log4j12:2.1.0-alpha1
 
-snippet 2.04-iac-ovhcloud-serviceId:
-  prefix: "2.04-iac-ovhcloud-serviceId"
-  name: "2.04-iac-ovhcloud-serviceId"
+snippet 2.05-iac-ovhcloud-serviceId:
+  prefix: "2.05-iac-ovhcloud-serviceId"
+  name: "2.05-iac-ovhcloud-serviceId"
   scope: "java"
   body: |
     private final static String OVH_CLOUD_PROJECT_SERVICE = System.getenv("OVH_CLOUD_PROJECT_SERVICE");
 
-snippet 2.05-iac-timeout:
-  prefix: "2.05-iac-timeout"
-  name: "2.05-iac-timeout"
+snippet 2.06-iac-timeout:
+  prefix: "2.06-iac-timeout"
+  name: "2.06-iac-timeout"
   scope: "java"
   body: |
     private final static CustomResourceOptions timeout = CustomResourceOptions.builder()
@@ -33,9 +33,9 @@ snippet 2.05-iac-timeout:
             .create(Duration.ofMinutes(60))
             .build()).build();
 
-snippet 2.06-iac-kube-details:
-  prefix: "2.06-iac-kube-details"
-  name: "2.06-iac-kube-details"
+snippet 2.07-iac-kube-details:
+  prefix: "2.07-iac-kube-details"
+  name: "2.07-iac-kube-details"
   scope: "java"
   body: |
     KubeArgs kubeDetails = KubeArgs.builder()
@@ -45,9 +45,9 @@ snippet 2.06-iac-kube-details:
     .build();
     Kube kube = new Kube("jarvis-devoxx", kubeDetails, timeout);
 
-snippet 2.07-iac-kube-nodepool-details:
-  prefix: "2.07-iac-kube-nodepool-details"
-  name: "2.07-iac-kube-nodepool-details"
+snippet 2.08-iac-kube-nodepool-details:
+  prefix: "2.08-iac-kube-nodepool-details"
+  name: "2.08-iac-kube-nodepool-details"
   scope: "java"
   body: |
     KubeNodePoolArgs nodePoolDetails = KubeNodePoolArgs.builder()
@@ -60,16 +60,16 @@ snippet 2.07-iac-kube-nodepool-details:
     .build();
     KubeNodePool nodePool = new KubeNodePool("jarvis-devoxx-nodepool", nodePoolDetails, timeout);
 
-snippet 2.08-iac-kube-kubeconfig:
-  prefix: "2.08-iac-kube-kubeconfig"
-  name: "2.08-iac-kube-kubeconfig"
+snippet 2.09-iac-kube-kubeconfig:
+  prefix: "2.09-iac-kube-kubeconfig"
+  name: "2.09-iac-kube-kubeconfig"
   scope: "java"
   body: |
     ctx.export("kubeconfig", kube.kubeconfig());
 
-snippet 2.09-iac-db-details:
-  prefix: "2.09-iac-db-details"
-  name: "2.09-iac-db-details"
+snippet 2.10-iac-db-details:
+  prefix: "2.10-iac-db-details"
+  name: "2.10-iac-db-details"
   scope: "java"
   body: |
     DatabaseNodeArgs databaseNodeArgs = DatabaseNodeArgs.builder()
@@ -88,9 +88,9 @@ snippet 2.09-iac-db-details:
 
     Database database = new Database("jarvis-database", databaseArgs, timeout);
 
-snippet 2.10-iac-db-postgres-user:
-  prefix: "2.10-iac-db-postgres-user"
-  name: "2.10-iac-db-postgres-user"
+snippet 2.11-iac-db-postgres-user:
+  prefix: "2.11-iac-db-postgres-user"
+  name: "2.11-iac-db-postgres-user"
   scope: "java"
   body: |
     PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()
@@ -101,9 +101,9 @@ snippet 2.10-iac-db-postgres-user:
     PostgresSqlUser postgresSqlUser = new PostgresSqlUser("avnadmin", postgresSqlUserArgs, timeout);
     postgresSqlUser.passwordReset();
 
-snippet 2.11-iac-db-postgres-instance:
-  prefix: "2.11-iac-db-postgres-instance"
-  name: "2.11-iac-db-postgres-instance"
+snippet 2.12-iac-db-postgres-instance:
+  prefix: "2.12-iac-db-postgres-instance"
+  name: "2.12-iac-db-postgres-instance"
   scope: "java"
   body: |
     DatabaseInstanceArgs databaseInstanceArgs = DatabaseInstanceArgs.builder()
@@ -115,9 +115,9 @@ snippet 2.11-iac-db-postgres-instance:
 
     DatabaseInstance databaseInstance = new DatabaseInstance("jarvis-ai-embeddings", databaseInstanceArgs, timeout);
 
-snippet 2.12-iac-db-conf-export:
-  prefix: "2.12-iac-db-conf-export"
-  name: "2.12-iac-db-conf-export"
+snippet 2.13-iac-db-conf-export:
+  prefix: "2.13-iac-db-conf-export"
+  name: "2.13-iac-db-conf-export"
   scope: "java"
   body: |
     ctx. export("cluster_uri", database.endpoints().applyValue(endpoint -> endpoint.getFirst().uri()));
@@ -127,24 +127,24 @@ snippet 2.12-iac-db-conf-export:
 
     ctx.export("avnadmin-password", postgresSqlUser.password());
 
-snippet 2.13-iac-call-kube:
-  prefix: "2.13-iac-call-kube"
-  name: "2.13-iac-call-kube"
+snippet 2.14-iac-call-kube:
+  prefix: "2.14-iac-call-kube"
+  name: "2.14-iac-call-kube"
   scope: "java"
   body: |
     createK8s(ctx);
 
-snippet 2.14-iac-call-db:
-  prefix: "2.14-iac-call-db"
-  name: "2.14-iac-call-db"
+snippet 2.15-iac-call-db:
+  prefix: "2.15-iac-call-db"
+  name: "2.15-iac-call-db"
   scope: "java"
   body: |
     createDB(ctx);
 
-snippet 2.15-pulumi-new-runtime-cfg:
-  prefix: "2.15-pulumi-new-runtime-cfg"
-  name: "2.15-pulumi-new-runtime-cfg"
-  scope: "xml"
+snippet 2.16-pulumi-new-runtime-cfg:
+  prefix: "2.16-pulumi-new-runtime-cfg"
+  name: "2.16-pulumi-new-runtime-cfg"
+  scope: "yaml"
   body: |
     runtime: 
       name: java

@@ -278,9 +278,9 @@ snippet 4.22-add-fire-event-method:
         }
     }
 
-snippet 4.23-add-ref-and-ref-type-fields:
-  prefix: "4.23-add-ref-and-ref-type-fields"
-  name: "4.23-add-ref-and-ref-type-fields"
+snippet 4.24-add-ref-and-ref-type-fields:
+  prefix: "4.24-add-ref-and-ref-type-fields"
+  name: "4.24-add-ref-and-ref-type-fields"
   scope: "java"
   body: |
     private String ref;
@@ -299,17 +299,17 @@ snippet 4.23-add-ref-and-ref-type-fields:
       this.ref_type = ref_type;
     }
 
-snippet 4.24-inject-jarvis-operator:
-  prefix: "4.24-inject-jarvis-operator"
-  name: "4.24-inject-jarvis-operator"
+snippet 4.25-inject-jarvis-operator:
+  prefix: "4.25-inject-jarvis-operator"
+  name: "4.25-inject-jarvis-operator"
   scope: "java"
   body: |
     @Inject
     private JarvisOperatorReconciler jarvisOperator;
 
-snippet 4.25-add-new-tag-method:
-  prefix: "4.25-add-new-tag-method"
-  name: "4.25-add-new-tag-method"
+snippet 4.26-add-new-tag-method:
+  prefix: "4.26-add-new-tag-method"
+  name: "4.26-add-new-tag-method"
   scope: "java"
   body: |
     @POST
@@ -326,9 +326,9 @@ snippet 4.25-add-new-tag-method:
       return Response.ok().build();
     }
 
-snippet 4.32-packaging-configuration:
-  prefix: "4.32-packaging-configuration"
-  name: "4.32-packaging-configuration"
+snippet 4.33-packaging-configuration:
+  prefix: "4.33-packaging-configuration"
+  name: "4.33-packaging-configuration"
   body: |
     # Image configuration
     quarkus.container-image.build=true

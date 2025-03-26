@@ -1,14 +1,14 @@
 {
-  "2.02-iac-shebang": {
+  "2.03-iac-shebang": {
     "body": [
       "///usr/bin/env jbang \"\\$0\" \"\\$@\" ; exit \\$?",
       ""
     ],
     "description": "",
-    "prefix": "2.02-iac-shebang",
+    "prefix": "2.03-iac-shebang",
     "scope": "java"
   },
-  "2.03-iac-dependencies": {
+  "2.04-iac-dependencies": {
     "body": [
       "//DEPS com.pulumi:pulumi:1.+",
       "//DEPS com.ovhcloud.pulumi.ovh:pulumi-ovh:1.6.0",
@@ -17,19 +17,19 @@
       ""
     ],
     "description": "",
-    "prefix": "2.03-iac-dependencies",
+    "prefix": "2.04-iac-dependencies",
     "scope": "java"
   },
-  "2.04-iac-ovhcloud-serviceId": {
+  "2.05-iac-ovhcloud-serviceId": {
     "body": [
       "private final static String OVH_CLOUD_PROJECT_SERVICE = System.getenv(\"OVH_CLOUD_PROJECT_SERVICE\");",
       ""
     ],
     "description": "",
-    "prefix": "2.04-iac-ovhcloud-serviceId",
+    "prefix": "2.05-iac-ovhcloud-serviceId",
     "scope": "java"
   },
-  "2.05-iac-timeout": {
+  "2.06-iac-timeout": {
     "body": [
       "private final static CustomResourceOptions timeout = CustomResourceOptions.builder()",
       ".customTimeouts(",
@@ -39,10 +39,10 @@
       ""
     ],
     "description": "",
-    "prefix": "2.05-iac-timeout",
+    "prefix": "2.06-iac-timeout",
     "scope": "java"
   },
-  "2.06-iac-kube-details": {
+  "2.07-iac-kube-details": {
     "body": [
       "KubeArgs kubeDetails = KubeArgs.builder()",
       "      .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
@@ -53,10 +53,10 @@
       ""
     ],
     "description": "",
-    "prefix": "2.06-iac-kube-details",
+    "prefix": "2.07-iac-kube-details",
     "scope": "java"
   },
-  "2.07-iac-kube-nodepool-details": {
+  "2.08-iac-kube-nodepool-details": {
     "body": [
       "KubeNodePoolArgs nodePoolDetails = KubeNodePoolArgs.builder()",
       "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
@@ -70,19 +70,19 @@
       ""
     ],
     "description": "",
-    "prefix": "2.07-iac-kube-nodepool-details",
+    "prefix": "2.08-iac-kube-nodepool-details",
     "scope": "java"
   },
-  "2.08-iac-kube-kubeconfig": {
+  "2.09-iac-kube-kubeconfig": {
     "body": [
       "ctx.export(\"kubeconfig\", kube.kubeconfig());",
       ""
     ],
     "description": "",
-    "prefix": "2.08-iac-kube-kubeconfig",
+    "prefix": "2.09-iac-kube-kubeconfig",
     "scope": "java"
   },
-  "2.09-iac-db-details": {
+  "2.10-iac-db-details": {
     "body": [
       "DatabaseNodeArgs databaseNodeArgs = DatabaseNodeArgs.builder()",
       ".region(\"GRA\")",
@@ -102,10 +102,10 @@
       ""
     ],
     "description": "",
-    "prefix": "2.09-iac-db-details",
+    "prefix": "2.10-iac-db-details",
     "scope": "java"
   },
-  "2.10-iac-db-postgres-user": {
+  "2.11-iac-db-postgres-user": {
     "body": [
       "PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()",
       "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
@@ -117,10 +117,10 @@
       ""
     ],
     "description": "",
-    "prefix": "2.10-iac-db-postgres-user",
+    "prefix": "2.11-iac-db-postgres-user",
     "scope": "java"
   },
-  "2.11-iac-db-postgres-instance": {
+  "2.12-iac-db-postgres-instance": {
     "body": [
       "DatabaseInstanceArgs databaseInstanceArgs = DatabaseInstanceArgs.builder()",
       "    .clusterId(database.id())",
@@ -133,10 +133,10 @@
       ""
     ],
     "description": "",
-    "prefix": "2.11-iac-db-postgres-instance",
+    "prefix": "2.12-iac-db-postgres-instance",
     "scope": "java"
   },
-  "2.12-iac-db-conf-export": {
+  "2.13-iac-db-conf-export": {
     "body": [
       "ctx. export(\"cluster_uri\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().uri()));",
       "ctx. export(\"db_port\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().port()));",
@@ -147,28 +147,28 @@
       ""
     ],
     "description": "",
-    "prefix": "2.12-iac-db-conf-export",
+    "prefix": "2.13-iac-db-conf-export",
     "scope": "java"
   },
-  "2.13-iac-call-kube": {
+  "2.14-iac-call-kube": {
     "body": [
       "createK8s(ctx);",
       ""
     ],
     "description": "",
-    "prefix": "2.13-iac-call-kube",
+    "prefix": "2.14-iac-call-kube",
     "scope": "java"
   },
-  "2.14-iac-call-db": {
+  "2.15-iac-call-db": {
     "body": [
       "createDB(ctx);",
       ""
     ],
     "description": "",
-    "prefix": "2.14-iac-call-db",
+    "prefix": "2.15-iac-call-db",
     "scope": "java"
   },
-  "2.15-pulumi-new-runtime-cfg": {
+  "2.16-pulumi-new-runtime-cfg": {
     "body": [
       "runtime: ",
       "  name: java",
@@ -177,7 +177,7 @@
       ""
     ],
     "description": "",
-    "prefix": "2.15-pulumi-new-runtime-cfg",
-    "scope": "xml"
+    "prefix": "2.16-pulumi-new-runtime-cfg",
+    "scope": "yaml"
   }
 }

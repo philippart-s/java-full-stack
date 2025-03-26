@@ -314,7 +314,7 @@
     "prefix": "4.22-add-fire-event-method",
     "scope": "java"
   },
-  "4.23-add-ref-and-ref-type-fields": {
+  "4.24-add-ref-and-ref-type-fields": {
     "body": [
       "private String ref;",
       "private String ref_type;",
@@ -334,20 +334,20 @@
       ""
     ],
     "description": "",
-    "prefix": "4.23-add-ref-and-ref-type-fields",
+    "prefix": "4.24-add-ref-and-ref-type-fields",
     "scope": "java"
   },
-  "4.24-inject-jarvis-operator": {
+  "4.25-inject-jarvis-operator": {
     "body": [
       "@Inject",
       "private JarvisOperatorReconciler jarvisOperator;",
       ""
     ],
     "description": "",
-    "prefix": "4.24-inject-jarvis-operator",
+    "prefix": "4.25-inject-jarvis-operator",
     "scope": "java"
   },
-  "4.25-add-new-tag-method": {
+  "4.26-add-new-tag-method": {
     "body": [
       "@POST",
       "@Path(\"/event\")",
@@ -365,10 +365,10 @@
       ""
     ],
     "description": "",
-    "prefix": "4.25-add-new-tag-method",
+    "prefix": "4.26-add-new-tag-method",
     "scope": "java"
   },
-  "4.32-packaging-configuration": {
+  "4.33-packaging-configuration": {
     "body": [
       "# Image configuration",
       "quarkus.container-image.build=true",
@@ -380,7 +380,7 @@
       ""
     ],
     "description": "",
-    "prefix": "4.32-packaging-configuration",
+    "prefix": "4.33-packaging-configuration",
     "scope": ""
   }
 }
