@@ -41,7 +41,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - set class annotation (`1.24-app-embedding-model-annot`)
   - add the `Produces` annotation (`1.25-app-embedding-model-producer`)
   - configure the OVHcloud embedding model (`1.26-app-enbedding-model-ovh-model`)
- - create the [DevoxxDataEmbedding](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) class
+ - create the [DevoxxDataEmbeddingService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) class
   - inject the embedding store and model (`1.27-app-data-embedding-svc-inject`)
   - inject the Devoxx service (`1.28-app-data-devoxx-svc-inject`)
   - ingest talks (`1.29-app-data-devoxx-svc-ingest`)
