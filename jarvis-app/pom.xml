@@ -47,7 +47,7 @@
             <artifactId>quarkus-langchain4j-mistral-ai</artifactId>
             <version>0.25.0</version>
         </dependency>
-        <!-- 1.21-app-ovhai-dependency -->
+        <!-- 1.22-app-ovhai-dependency -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-ovh-ai</artifactId>

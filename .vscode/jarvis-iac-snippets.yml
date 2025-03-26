@@ -1,0 +1,152 @@
+snippet 2.03-iac-shebang:
+  prefix: "2.03-iac-shebang"
+  name: "2.03-iac-shebang"
+  scope: "java"
+  body: |
+    ///usr/bin/env jbang "\$0" "\$@" ; exit \$?
+
+snippet 2.04-iac-dependencies:
+  prefix: "2.04-iac-dependencies"
+  name: "2.04-iac-dependencies"
+  scope: "java"
+  body: |
+    //DEPS com.pulumi:pulumi:1.+
+    //DEPS com.ovhcloud.pulumi.ovh:pulumi-ovh:1.6.0
+    //DEPS org.slf4j:slf4j-api:2.1.0-alpha1
+    //DEPS org.slf4j:slf4j-log4j12:2.1.0-alpha1
+
+snippet 2.05-iac-ovhcloud-serviceId:
+  prefix: "2.05-iac-ovhcloud-serviceId"
+  name: "2.05-iac-ovhcloud-serviceId"
+  scope: "java"
+  body: |
+    private final static String OVH_CLOUD_PROJECT_SERVICE = System.getenv("OVH_CLOUD_PROJECT_SERVICE");
+
+snippet 2.06-iac-timeout:
+  prefix: "2.06-iac-timeout"
+  name: "2.06-iac-timeout"
+  scope: "java"
+  body: |
+    private final static CustomResourceOptions timeout = CustomResourceOptions.builder()
+    .customTimeouts(
+        CustomTimeouts.builder()
+            .create(Duration.ofMinutes(60))
+            .build()).build();
+
+snippet 2.07-iac-kube-details:
+  prefix: "2.07-iac-kube-details"
+  name: "2.07-iac-kube-details"
+  scope: "java"
+  body: |
+    KubeArgs kubeDetails = KubeArgs.builder()
+          .serviceName(OVH_CLOUD_PROJECT_SERVICE)
+          .name("jarvis-devoxx")
+          .region("GRA7")
+    .build();
+    Kube kube = new Kube("jarvis-devoxx", kubeDetails, timeout);
+
+snippet 2.08-iac-kube-nodepool-details:
+  prefix: "2.08-iac-kube-nodepool-details"
+  name: "2.08-iac-kube-nodepool-details"
+  scope: "java"
+  body: |
+    KubeNodePoolArgs nodePoolDetails = KubeNodePoolArgs.builder()
+        .serviceName(OVH_CLOUD_PROJECT_SERVICE)
+        .name("jarvis-devoxx-nodepool")
+        .flavorName("d2-4")
+        .kubeId(kube.id().asPlaintext())
+        .minNodes(1)
+        .maxNodes(1)
+    .build();
+    KubeNodePool nodePool = new KubeNodePool("jarvis-devoxx-nodepool", nodePoolDetails, timeout);
+
+snippet 2.09-iac-kube-kubeconfig:
+  prefix: "2.09-iac-kube-kubeconfig"
+  name: "2.09-iac-kube-kubeconfig"
+  scope: "java"
+  body: |
+    ctx.export("kubeconfig", kube.kubeconfig());
+
+snippet 2.10-iac-db-details:
+  prefix: "2.10-iac-db-details"
+  name: "2.10-iac-db-details"
+  scope: "java"
+  body: |
+    DatabaseNodeArgs databaseNodeArgs = DatabaseNodeArgs.builder()
+    .region("GRA")
+    .build();
+
+    DatabaseArgs databaseArgs = DatabaseArgs.builder()
+        .description("jarvis-database")
+        .flavor("db1-4")
+        .plan("essential")
+        .serviceName(OVH_CLOUD_PROJECT_SERVICE)
+        .engine("postgresql")
+        .version("16")
+        .nodes(databaseNodeArgs)
+        .build();
+
+    Database database = new Database("jarvis-database", databaseArgs, timeout);
+
+snippet 2.11-iac-db-postgres-user:
+  prefix: "2.11-iac-db-postgres-user"
+  name: "2.11-iac-db-postgres-user"
+  scope: "java"
+  body: |
+    PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()
+        .serviceName(OVH_CLOUD_PROJECT_SERVICE)
+        .clusterId(database.id())
+    .build();
+
+    PostgresSqlUser postgresSqlUser = new PostgresSqlUser("avnadmin", postgresSqlUserArgs, timeout);
+    postgresSqlUser.passwordReset();
+
+snippet 2.12-iac-db-postgres-instance:
+  prefix: "2.12-iac-db-postgres-instance"
+  name: "2.12-iac-db-postgres-instance"
+  scope: "java"
+  body: |
+    DatabaseInstanceArgs databaseInstanceArgs = DatabaseInstanceArgs.builder()
+        .clusterId(database.id())
+        .serviceName(OVH_CLOUD_PROJECT_SERVICE)
+        .engine("postgresql")
+        .name("jarvis-ai-embeddings")
+        .build();
+
+    DatabaseInstance databaseInstance = new DatabaseInstance("jarvis-ai-embeddings", databaseInstanceArgs, timeout);
+
+snippet 2.13-iac-db-conf-export:
+  prefix: "2.13-iac-db-conf-export"
+  name: "2.13-iac-db-conf-export"
+  scope: "java"
+  body: |
+    ctx. export("db_port", database.endpoints().applyValue(endpoint -> endpoint.getFirst().port()));
+    ctx. export("db_host", database.endpoints().applyValue(endpoint -> endpoint.getFirst().domain()));
+    ctx. export("db_id", database.id());
+
+    ctx.export("avnadmin-password", postgresSqlUser.password());
+
+snippet 2.14-iac-call-kube:
+  prefix: "2.14-iac-call-kube"
+  name: "2.14-iac-call-kube"
+  scope: "java"
+  body: |
+    createK8s(ctx);
+
+snippet 2.15-iac-call-db:
+  prefix: "2.15-iac-call-db"
+  name: "2.15-iac-call-db"
+  scope: "java"
+  body: |
+    createDB(ctx);
+
+snippet 2.16-pulumi-new-runtime-cfg:
+  prefix: "2.16-pulumi-new-runtime-cfg"
+  name: "2.16-pulumi-new-runtime-cfg"
+  scope: "yaml"
+  body: |
+    runtime: 
+      name: java
+      options: 
+        binary: src/JarvisIaC.java
+

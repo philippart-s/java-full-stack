@@ -29,11 +29,11 @@ public class DevoxxCFPResource {
   @RestClient
   DevoxxCFPService devoxxCFP;
 
-  // 1.31-app-devoxx-resource-rest-embedding
+  // 1.32-app-devoxx-resource-rest-embedding
   @Inject
   DevoxxDataEmbeddingService devoxxDataEmbedding;
 
-  // 1.38-app-devoxx-resource-template-inject
+  // 1.39-app-devoxx-resource-template-inject
   @Inject
   @Location("DevoxxCFPResource/devoxxconference.html")
   Template devoxxconference;
@@ -50,7 +50,7 @@ public class DevoxxCFPResource {
     return devoxxConferences;
   }
 
-  // 1.39-app-devoxx-resource-template-index
+  // 1.40-app-devoxx-resource-template-index
   @GET
   @Path("/index")
   @Produces(MediaType.TEXT_HTML)
@@ -60,7 +60,7 @@ public class DevoxxCFPResource {
     return devoxxconference.data("conferences", Collections.EMPTY_LIST);
   }
 
-  // 1.40-app-devoxx-resource-template
+  // 1.41-app-devoxx-resource-template
   @GET
   @Path("/template")
   @Produces(MediaType.TEXT_HTML)
@@ -70,7 +70,7 @@ public class DevoxxCFPResource {
     return devoxxconference.data("conferences", devoxxCFP.getConferences().subList(0, 10));
   }
 
-  // 1.32-app-devoxx-resource-rest-synchro
+  // 1.33-app-devoxx-resource-rest-synchro
   @GET
   @Path("/synchro")
   public void synchro() {

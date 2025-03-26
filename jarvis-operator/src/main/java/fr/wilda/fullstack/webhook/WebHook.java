@@ -15,11 +15,11 @@ import jakarta.ws.rs.core.Response;
 public class WebHook {
   private static final Logger _LOG = LoggerFactory.getLogger(WebHook.class);
 
-  // 4.24-inject-jarvis-operator
+  // 4.25-inject-jarvis-operator
   @Inject
   private JarvisOperatorReconciler jarvisOperator;
 
-  // 4.25-add-new-tag-method
+  // 4.26-add-new-tag-method
   @POST
   @Path("/event")
   @Consumes(MediaType.APPLICATION_JSON)

@@ -1,6 +1,6 @@
-// 2.02-iac-shebang
+// 2.03-iac-shebang
 ///usr/bin/env jbang "$0" "$@" ; exit $?
-// 2.03-iac-dependencies
+// 2.04-iac-dependencies
 //DEPS com.pulumi:pulumi:1.+
 //DEPS com.ovhcloud.pulumi.ovh:pulumi-ovh:1.6.0
 //DEPS org.slf4j:slf4j-api:2.1.0-alpha1
@@ -26,10 +26,10 @@ import com.pulumi.resources.CustomTimeouts;
 
 public class JarvisIaC {
 
-    // 2.04-iac-ovhcloud-serviceId
+    // 2.05-iac-ovhcloud-serviceId
     private final static String OVH_CLOUD_PROJECT_SERVICE = System.getenv("OVH_CLOUD_PROJECT_SERVICE");
 
-    // 2.05-iac-timeout
+    // 2.06-iac-timeout
     private final static CustomResourceOptions timeout = CustomResourceOptions.builder()
     .customTimeouts(
         CustomTimeouts.builder()
@@ -41,15 +41,15 @@ public class JarvisIaC {
     }
 
     public static void stack(Context ctx) {
-        // 2.13-iac-call-kube
+        // 2.14-iac-call-kube
         createK8s(ctx);
 
-        // 2.14-iac-call-db
+        // 2.15-iac-call-db
         createDB(ctx);
     }
 
     private static void createK8s(Context ctx) {
-        // 2.06-iac-kube-details
+        // 2.07-iac-kube-details
         KubeArgs kubeDetails = KubeArgs.builder()
                                         .serviceName(OVH_CLOUD_PROJECT_SERVICE)
                                         .name("jarvis-devoxx-01")
@@ -57,7 +57,7 @@ public class JarvisIaC {
                                     .build();
         Kube kube = new Kube("jarvis-devoxx-01", kubeDetails, timeout);
         
-        // 2.07-iac-kube-nodepool-details
+        // 2.08-iac-kube-nodepool-details
         KubeNodePoolArgs nodePoolDetails = KubeNodePoolArgs.builder()
                                             .serviceName(OVH_CLOUD_PROJECT_SERVICE)
                                             .name("jarvis-devoxx-01-nodepool")
@@ -68,12 +68,12 @@ public class JarvisIaC {
                                         .build();
         KubeNodePool nodePool = new KubeNodePool("jarvis-devoxx-01-nodepool", nodePoolDetails, timeout);
 
-        // 2.08-iac-kube-kubeconfig
+        // 2.09-iac-kube-kubeconfig
         ctx.export("kubeconfig", kube.kubeconfig());
     }
 
     private static void createDB(Context ctx) {
-        // 2.09-iac-db-details
+        // 2.10-iac-db-details
         DatabaseNodeArgs databaseNodeArgs = DatabaseNodeArgs.builder()
             .region("GRA")
             .build();
@@ -90,16 +90,18 @@ public class JarvisIaC {
 
         Database database = new Database("jarvis-database-01", databaseArgs, timeout);
 
-        // 2.10-iac-db-postgres-user
+        // 2.11-iac-db-postgres-user
         PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()
-        .serviceName(OVH_CLOUD_PROJECT_SERVICE)
-        .clusterId(database.id())
-        .build();
+                .serviceName(OVH_CLOUD_PROJECT_SERVICE)
+                .name("avnadmin")
+                .clusterId(database.id())
+                .passwordReset("⚡️")
+                .build();
 
         PostgresSqlUser postgresSqlUser = new PostgresSqlUser("avnadmin", postgresSqlUserArgs, timeout);
         postgresSqlUser.passwordReset();
 
-        // 2.11-iac-db-postgres-instance`
+        // 2.12-iac-db-postgres-instance`
         DatabaseInstanceArgs databaseInstanceArgs = DatabaseInstanceArgs.builder()
             .clusterId(database.id())
             .serviceName(OVH_CLOUD_PROJECT_SERVICE)
@@ -109,8 +111,7 @@ public class JarvisIaC {
 
         DatabaseInstance databaseInstance = new DatabaseInstance("jarvis-ai-embeddings-01", databaseInstanceArgs, timeout);
         
-        // 2.12-iac-db-conf-export
-        ctx. export("cluster_uri", database.endpoints().applyValue(endpoint -> endpoint.getFirst().uri()));
+        // 2.13-iac-db-conf-export
         ctx. export("db_port", database.endpoints().applyValue(endpoint -> endpoint.getFirst().port()));
         ctx. export("db_host", database.endpoints().applyValue(endpoint -> endpoint.getFirst().domain()));
         ctx. export("db_id", database.id());
