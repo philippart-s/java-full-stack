@@ -34,6 +34,7 @@ _init/jarvis-cli-init/
 .env
 .env.bck
 .vscode/settings.json
+.idea/
 
 # Java configuration
 target/
