@@ -1,6 +1,6 @@
 name: jarvis_iac
 description: A minimal Java Pulumi program with JBang
-# 2.15-pulumi-new-runtime-cfg
+# 2.16-pulumi-new-runtime-cfg
 
 runtime: java
 

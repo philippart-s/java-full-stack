@@ -1,6 +1,6 @@
-// 2.02-iac-shebang
+// 2.03-iac-shebang
 
-// 2.03-iac-dependencies
+// 2.04-iac-dependencies
 
 import java.time.Duration;
 
@@ -22,36 +22,36 @@ import com.pulumi.resources.CustomTimeouts;
 
 public class JarvisIaC {
 
-    // 2.04-iac-ovhcloud-serviceId
+    // 2.05-iac-ovhcloud-serviceId
 
-    // 2.05-iac-timeout
+    // 2.06-iac-timeout
 
     public static void main(String[] args) {
         Pulumi.run(JarvisIaC::stack);
     }
 
     public static void stack(Context ctx) {
-        // 2.13-iac-call-kube
+        // 2.14-iac-call-kube
 
-        // 2.14-iac-call-db
+        // 2.15-iac-call-db
     }
 
     private static void createK8s(Context ctx) {
-        // 2.06-iac-kube-details
+        // 2.07-iac-kube-details
         
-        // 2.07-iac-kube-nodepool-details
+        // 2.08-iac-kube-nodepool-details
 
-        // 2.08-iac-kube-kubeconfig
+        // 2.09-iac-kube-kubeconfig
         
     }
 
     private static void createDB(Context ctx) {
-        // 2.09-iac-db-details
+        // 2.10-iac-db-details
 
-        // 2.10-iac-db-postgres-user
+        // 2.11-iac-db-postgres-user
 
-        // 2.11-iac-db-postgres-instance
+        // 2.12-iac-db-postgres-instance
         
-        // 2.12-iac-db-conf-export
+        // 2.13-iac-db-conf-export
     }
 }

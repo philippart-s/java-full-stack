@@ -138,7 +138,6 @@
   },
   "2.13-iac-db-conf-export": {
     "body": [
-      "ctx. export(\"cluster_uri\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().uri()));",
       "ctx. export(\"db_port\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().port()));",
       "ctx. export(\"db_host\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().domain()));",
       "ctx. export(\"db_id\", database.id());",
