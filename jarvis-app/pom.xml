@@ -39,7 +39,7 @@
             <artifactId>quarkus-rest</artifactId>
         </dependency>
 
-        <!-- 1.21-app-ovhai-dependency -->
+        <!-- 1.22-app-ovhai-dependency -->
 
         <dependency>
             <groupId>io.quarkus</groupId>

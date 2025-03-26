@@ -1,10 +1,10 @@
 package fr.wilda.fullstack.resources;
 
-// 1.42-app-chatbot-ws-annot
+// 1.43-app-chatbot-ws-annot
 public class ChatBotWebsocketResource {
 
-  // 1.43-app-chatbot-ws-inject-svc
+  // 1.44-app-chatbot-ws-inject-svc
   
-  // 1.44-app-chatbot-ws-on-message
+  // 1.45-app-chatbot-ws-on-message
   
 }

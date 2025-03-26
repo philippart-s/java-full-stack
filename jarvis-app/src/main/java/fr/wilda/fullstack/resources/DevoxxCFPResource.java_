@@ -12,19 +12,19 @@ public class DevoxxCFPResource {
 
   // 1.18-app-devoxx-resource-rest-client
 
-  // 1.31-app-devoxx-resource-rest-embedding
+  // 1.32-app-devoxx-resource-rest-embedding
   
-  // 1.38-app-devoxx-resource-template-inject
+  // 1.39-app-devoxx-resource-template-inject
   
   // 1.19-app-devoxx-resource-get-conferences-annot
   public List<Conference> getConferences() {
     // 1.20-app-devoxx-resource-get-conf-body
   }
 
-  // 1.39-app-devoxx-resource-template-index
+  // 1.40-app-devoxx-resource-template-index
   
-  // 1.40-app-devoxx-resource-template
+  // 1.41-app-devoxx-resource-template
   
-  // 1.32-app-devoxx-resource-rest-synchro
+  // 1.33-app-devoxx-resource-rest-synchro
   
 }

@@ -8,15 +8,15 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class DevoxxDataEmbeddingService {
   private static final Logger _LOG = LoggerFactory.getLogger(DevoxxDataEmbeddingService.class);
 
-  // 1.27-app-data-embedding-svc-inject
+  // 1.28-app-data-embedding-svc-inject
   
-  // 1.28-app-data-devoxx-svc-inject
+  // 1.29-app-data-devoxx-svc-inject
 
   /**
    * Take the Devoxx talks and transform them into a vector to add each of vectors in the store.
    */
   public void ingest() {
-    // 1.29-app-data-devoxx-svc-ingest
+    // 1.30-app-data-devoxx-svc-ingest
 
   }
 
@@ -24,7 +24,7 @@ public class DevoxxDataEmbeddingService {
    * Delete all vectors in the store.
    */
   public void deleteAll() {
-    // 1.30-app-data-devoxx-svc-deleteall
+    // 1.31-app-data-devoxx-svc-deleteall
     
   }
 }
