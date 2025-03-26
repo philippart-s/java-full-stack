@@ -44,6 +44,8 @@ public class JarvisOperatorReconciler implements Reconciler<JarvisOperator> {
         
 
         // 4.21-apply-status-patch
+        
+        return null;
     }
 
     /**
