@@ -159,6 +159,6 @@
     ],
     "description": "",
     "prefix": "5.15-prod-logs",
-    "scope": "java"
+    "scope": ""
   }
 }

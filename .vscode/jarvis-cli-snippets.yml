@@ -127,7 +127,6 @@ snippet 5.14-devoxx-call:
 snippet 5.15-prod-logs:
   prefix: "5.15-prod-logs"
   name: "5.15-prod-logs"
-  scope: "java"
   body: |
     # Logs configuration
     %prod.quarkus.log.level=OFF

@@ -180,7 +180,7 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
     - add parameter (`5.09-jarvis-param`)
     - add `call` method (`5.10-call-service`)
     - add `@TopCommand` annotation
-  - test the CLI `Est-ce que Stéphane Philippart a un talk à Devoxx France ?`
+  - test the CLI `"Est-ce que Stéphane Philippart a un talk à Devoxx France ?"`
   - create [DevoxxSubCommand](./jarvis-cli/src/main/java/fr/wilda/fullstack/DevoxxSubCommand.java) class
     - add the annotation (`5.11-devoxx-svc-annotation`)
     - inject rest client annotation (`5.12-devoxx-rest-client`)
@@ -190,5 +190,8 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - create native CLI
     - set logs (`5.15-prod-logs`) in [application.properties](./jarvis-cli/src/main/resources/application.properties)
     - run [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
-    - test CLI 
+  - test CLI [5.17-test-target-cli.sh](./jarvis-cli/5.17-test-target-cli.sh) && [5.18-test-jarvis-linux-cli.sh](./jarvis-cli/bin/5.18-test-jarvis-linux-cli.sh)
+  - add `GenerateCompletion.class`
+  - build again the CLI [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
+  - test CLI: [5.19-set-env.sh](jarvis-cli/bin/5.19-set-env.sh) & [5.20-add-auto-completion.sh](jarvis-cli/bin/5.20-add-auto-completion.sh)
   
