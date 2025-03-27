@@ -18,3 +18,8 @@ sudo sed -i "s/^OVH_DB_PASSWORD=.*/OVH_DB_PASSWORD=$(pulumi stack output avnadmi
 
 ## 🛠️  Generate kubeconfig-ovh file 🛠️
 pulumi stack output kubeconfig --show-secrets --non-interactive > ../jarvis-operator/kubeconfig-ovh.yml
+
+## ☸️ Set Kubernetes Node external IP ☸️
+export KUBECONFIG=../jarvis-operator/kubeconfig-ovh.yml
+NODE_IP=kubectl get nodes -o jsonpath='{.items[].status.addresses[].address}'
+sudo sed -i "s/^NODE_PUBLIC_IP=.*/NODE_PUBLIC_IP=$($NODE_IP)/" ../.env
