@@ -372,8 +372,9 @@
     "body": [
       "# Image configuration",
       "quarkus.container-image.build=true",
-      "quarkus.container-image.group=95y036e0.gra7.container-registry.ovh.net/devoxx",
+      "quarkus.container-image.group=devoxx",
       "quarkus.container-image.name=jarvis-operator",
+      "quarkus.container-image.registry=95y036e0.gra7.container-registry.ovh.net",
       "",
       "# Kubernetes configuration",
       "quarkus.kubernetes.namespace=jarvis-operator",
