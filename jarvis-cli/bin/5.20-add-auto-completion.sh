@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Load enviroment variables
-set -a
-source ../../.env
-set +a
+# 🛠️ Load environment variables 🛠️
+source ../0.01-source-env.sh
 
 clear
 
-bat -P -r 13:13 $(basename "$0")
+bat -P -r 10:11 $(basename "$0")
 
 # Activate the auto complete in bash
 ./jarvis --help
@@ -16,7 +14,7 @@ read -n 1 -p "Press any key to continue"
 
 clear
 
-bat -P -r 21:21 $(basename "$0")
+bat -P -r 19:19 $(basename "$0")
 
 ./jarvis generate-completion --help
 
@@ -24,6 +22,6 @@ read -n 1 -p "Press any key to continue"
 
 clear
 
-bat -P -r 29: $(basename "$0")
+bat -P -r 27: $(basename "$0")
 
 source <(./jarvis generate-completion)
