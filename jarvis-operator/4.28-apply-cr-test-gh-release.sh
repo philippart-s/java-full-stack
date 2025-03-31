@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Load enviroment variables
-set -a
-source ../.env
-set +a
+# 🛠️ Load environment variables 🛠️
+source ../0.01-source-env.sh
 
 clear
 
-bat -P -r 15: $(basename "$0")
+bat -P -r 10: $(basename "$0")
 
 # Configure KUBECONFIG environment variable for kubectl command
 export KUBECONFIG=./kubeconfig.yml

@@ -31,7 +31,7 @@ _init/jarvis-operator-init/
 _init/jarvis-cli-init/
 
 # Configuration
-.env
+.*env*
 .env.bck
 .vscode/settings.json
 .idea/
