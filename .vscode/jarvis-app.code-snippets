@@ -34,7 +34,7 @@
       "  Lorsque tu as des questions sur les titres, essai de trouver le titre de la conférence qui s'en rapproche le plus.",
       "  Lorsque tu as des questions sur les personnes donnant la conférence essaie de trouver le nom et prénom qui se suivent dans la catégorie speaker des données que tu possèdes.",
       "  \"\"\")",
-      "@UserMessage(\"Voci la question qui t'es posée : {question}\")",
+      "@UserMessage(\"Voici la question qui t'es posée : {question}\")",
       "Multi\u003cString\u003e askAQuestion(String question);",
       ""
     ],
@@ -51,14 +51,14 @@
     "prefix": "1.08-app-chatbot-rest-path",
     "scope": "java"
   },
-  "1.09-app-chatbot-rest-client": {
+  "1.09-app-chatbot-inject-svc": {
     "body": [
       "@Inject",
       "ChatbotService chatbotService;",
       ""
     ],
     "description": "",
-    "prefix": "1.09-app-chatbot-rest-client",
+    "prefix": "1.09-app-chatbot-inject-svc",
     "scope": "java"
   },
   "1.10-app-chatbot-rest-ask-annot": {
@@ -302,9 +302,9 @@
   },
   "1.36-app-db-prod-config": {
     "body": [
-      "%prod.quarkus.datasource.ai-enbeddings.username=${OVH_DB_USERNAME}",
-      "%prod.quarkus.datasource.ai-enbeddings.password=${OVH_DB_PASSWORD}",
-      "%prod.quarkus.datasource.ai-enbeddings.jdbc.url=jdbc:postgresql://${OVH_DB_HOST}:${OVH_DB_PORT}/jarvis-ai-embeddings",
+      "%prod.quarkus.datasource.ai-enbeddings.username=\\${OVH_DB_USERNAME}",
+      "%prod.quarkus.datasource.ai-enbeddings.password=\\${OVH_DB_PASSWORD}",
+      "%prod.quarkus.datasource.ai-enbeddings.jdbc.url=jdbc:postgresql://\\${OVH_DB_HOST}:\\${OVH_DB_PORT}/jarvis-ai-embeddings",
       ""
     ],
     "description": "",
@@ -362,7 +362,7 @@
   "1.41-app-devoxx-resource-template": {
     "body": [
       "@GET",
-      "@Path(\"/template\")",
+      "@Path(\"/lst-talks\")",
       "@Produces(MediaType.TEXT_HTML)",
       "@Blocking",
       "public TemplateInstance getConferencesTemplate() throws Exception {",

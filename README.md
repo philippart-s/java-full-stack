@@ -5,6 +5,18 @@ Code source for the Java full stack conference
 
 The simpliest way to use this code is to re-open the project with the Dev Containers.
 
+# 🗑️ Clean the demo 🗑️
+## 🗂️ Clean [_init](./_init/) folder:
+- `rm -rf jarvis-app-init`
+- `rm -rf jarvis-cli-init`
+- `rm -rf jarvis-iac-init`
+- `rm -rf jarvis-operator-init`
+
+## 🏗️ Clean Pulumi stacks 🏗️
+- `pulumi stack ls`
+- `pulumi destroy` in each stack (`pulumi select <stack name>`)
+- `pulumi stack rm <stack name>`
+
 # ⚡️ 01 - Quarkus app : [jarvis-app](./jarvis-app/) ⚡️
 ## 📼 Backend 📼
 

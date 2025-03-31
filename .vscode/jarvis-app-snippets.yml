@@ -31,7 +31,7 @@ snippet 1.07-app-ai-prompts:
       Lorsque tu as des questions sur les titres, essai de trouver le titre de la conférence qui s'en rapproche le plus.
       Lorsque tu as des questions sur les personnes donnant la conférence essaie de trouver le nom et prénom qui se suivent dans la catégorie speaker des données que tu possèdes.
       """)
-    @UserMessage("Voci la question qui t'es posée : {question}")
+    @UserMessage("Voici la question qui t'es posée : {question}")
     Multi<String> askAQuestion(String question);
 
 snippet 1.08-app-chatbot-rest-path:
@@ -41,10 +41,10 @@ snippet 1.08-app-chatbot-rest-path:
   body: |
     @Path("chatbot-api")
 
-snippet 1.09-app-chatbot-rest-client:
-  prefix: "1.09-app-chatbot-rest-client"
+snippet 1.09-app-chatbot-inject-svc:
+  prefix: "1.09-app-chatbot-inject-svc"
   scope: "java"
-  name: "1.09-app-chatbot-rest-client"
+  name: "1.09-app-chatbot-inject-svc"
   body: |
     @Inject
     ChatbotService chatbotService;
@@ -250,9 +250,9 @@ snippet 1.36-app-db-prod-config:
   prefix: "1.36-app-db-prod-config"
   name: "1.36-app-db-prod-config"
   body: |
-    %prod.quarkus.datasource.ai-enbeddings.username=${OVH_DB_USERNAME}
-    %prod.quarkus.datasource.ai-enbeddings.password=${OVH_DB_PASSWORD}
-    %prod.quarkus.datasource.ai-enbeddings.jdbc.url=jdbc:postgresql://${OVH_DB_HOST}:${OVH_DB_PORT}/jarvis-ai-embeddings
+    %prod.quarkus.datasource.ai-enbeddings.username=\${OVH_DB_USERNAME}
+    %prod.quarkus.datasource.ai-enbeddings.password=\${OVH_DB_PASSWORD}
+    %prod.quarkus.datasource.ai-enbeddings.jdbc.url=jdbc:postgresql://\${OVH_DB_HOST}:\${OVH_DB_PORT}/jarvis-ai-embeddings
 
 snippet 1.38-app-devoxx-confs-html:
   prefix: "1.38-app-devoxx-confs-html"
@@ -302,7 +302,7 @@ snippet 1.41-app-devoxx-resource-template:
   name: "1.41-app-devoxx-resource-template"
   body: |
     @GET
-    @Path("/template")
+    @Path("/lst-talks")
     @Produces(MediaType.TEXT_HTML)
     @Blocking
     public TemplateInstance getConferencesTemplate() throws Exception {

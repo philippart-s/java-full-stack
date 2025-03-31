@@ -24,10 +24,10 @@ public interface JarvisAPIService {
   public Multi<String> askJarvis(@FormParam("message") String message);
 
   @GET
-  @Path("/devoxx-synchro")
+  @Path("/devoxx-talks/synchro")
   public Response embeddingSynchro();
 
   @GET
-  @Path("/devoxx-synchro/delete")
+  @Path("/devoxx-talks/delete")
   public Response embeddingDeletion();
 }
