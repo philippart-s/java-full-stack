@@ -3,10 +3,10 @@ package fr.wilda.fullstack.config;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 
 // 1.25-app-embedding-model-annot
-public class RegisterOVHEmbededModel {
+public class RegisterOVHEmbeddedModel {
 
   // 1.26-app-embedding-model-producer
-  public EmbeddingModel ovhAIEmbedingModel() {
+  public EmbeddingModel ovhAIEmbeddingModel() {
     // 1.27-app-enbedding-model-ovh-model
     
   }

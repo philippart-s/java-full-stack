@@ -17,11 +17,11 @@
       "public Multi\u003cString\u003e askJarvis(@FormParam(\"message\") String message);",
       "",
       "@GET",
-      "@Path(\"/devoxx-synchro\")",
+      "@Path(\"/devoxx-talk/synchro\")",
       "public Response embeddingSynchro();",
       "",
       "@GET",
-      "@Path(\"/devoxx-synchro/delete\")",
+      "@Path(\"/devoxx-talk/delete\")",
       "public Response embeddingDeletion();",
       ""
     ],

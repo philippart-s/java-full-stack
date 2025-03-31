@@ -27,6 +27,7 @@ replay_pid*
 _init/jarvis-app-init/
 _init/jarvis/
 _init/jarvis-iac/
+_init/jarvis-iac-init
 _init/jarvis-operator-init/
 _init/jarvis-cli-init/
 
