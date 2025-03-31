@@ -17,11 +17,11 @@ snippet 5.05-svc-endpoint:
     public Multi<String> askJarvis(@FormParam("message") String message);
 
     @GET
-    @Path("/devoxx-synchro")
+    @Path("/devoxx-talks/synchro")
     public Response embeddingSynchro();
 
     @GET
-    @Path("/devoxx-synchro/delete")
+    @Path("/devoxx-talks/delete")
     public Response embeddingDeletion();
 
 snippet 5.06-rest-client-cfg:

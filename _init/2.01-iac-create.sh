@@ -7,11 +7,11 @@ clear
 
 bat -P -r 13: $(basename "$0")
 
-mkdir ./jarvis-iac
-cd ./jarvis-iac
+mkdir ./jarvis-iac-init
+cd ./jarvis-iac-init
 
 # Login locally at Pulumi
 pulumi login --local
 
 # Create a new project
-pulumi new -o java-jbang --force
+pulumi new java-jbang -o --force

@@ -62,7 +62,7 @@ public class DevoxxCFPResource {
 
   // 1.41-app-devoxx-resource-template
   @GET
-  @Path("/template")
+  @Path("/lst-talks")
   @Produces(MediaType.TEXT_HTML)
   @Blocking
   public TemplateInstance getConferencesTemplate() throws Exception {
