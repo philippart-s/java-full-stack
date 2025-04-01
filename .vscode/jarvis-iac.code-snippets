@@ -89,7 +89,7 @@
       ".build();",
       "",
       "DatabaseArgs databaseArgs = DatabaseArgs.builder()",
-      "    .description(\"jarvis-database\")",
+      "    .description(\"jarvis-devoxx-database\")",
       "    .flavor(\"db1-4\")",
       "    .plan(\"essential\")",
       "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
@@ -98,7 +98,7 @@
       "    .nodes(databaseNodeArgs)",
       "    .build();",
       "",
-      "Database database = new Database(\"jarvis-database\", databaseArgs, timeout);",
+      "Database database = new Database(\"jarvis-devoxx-database\", databaseArgs, timeout);",
       ""
     ],
     "description": "",
@@ -108,8 +108,10 @@
   "2.11-iac-db-postgres-user": {
     "body": [
       "PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()",
-      "    .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
-      "    .clusterId(database.id())",
+      "            .serviceName(OVH_CLOUD_PROJECT_SERVICE)",
+      "            .name(\"avnadmin\")",
+      "            .clusterId(database.id())",
+      "            .passwordReset(\"⚡️\")",
       ".build();",
       "",
       "PostgresSqlUser postgresSqlUser = new PostgresSqlUser(\"avnadmin\", postgresSqlUserArgs, timeout);",
@@ -138,11 +140,12 @@
   },
   "2.13-iac-db-conf-export": {
     "body": [
-      "ctx. export(\"db_port\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().port()));",
-      "ctx. export(\"db_host\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().domain()));",
-      "ctx. export(\"db_id\", database.id());",
+      "ctx.export(\"db_port\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().port()));",
+      "ctx.export(\"db_host\", database.endpoints().applyValue(endpoint -\u003e endpoint.getFirst().domain()));",
+      "ctx.export(\"db_id\", database.id());",
       "",
-      "ctx.export(\"avnadmin-password\", postgresSqlUser.password());",
+      "ctx.export(\"db_user\", postgresSqlUser.name());",
+      "ctx.export(\"db_password\", postgresSqlUser.password());",
       ""
     ],
     "description": "",

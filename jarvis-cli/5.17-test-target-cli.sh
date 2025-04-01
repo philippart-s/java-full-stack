@@ -8,4 +8,4 @@ clear
 bat -P -r 10: $(basename "$0")
 
 # Use CLI
-./bin/jarvis-linux "Est-ce que Stéphane Philippart a des talks à Devoxx France ?"
+./target/jarvis-cli-0.0.1-SNAPSHOT-runner "Est-ce que Stéphane Philippart a des talks à Devoxx France ?"
