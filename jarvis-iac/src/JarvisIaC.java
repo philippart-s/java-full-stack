@@ -69,6 +69,7 @@ public class JarvisIaC {
         KubeNodePool nodePool = new KubeNodePool("jarvis-devoxx-01-nodepool", nodePoolDetails, timeout);
 
         // 2.09-iac-kube-kubeconfig
+        ctx.export("kube_id", kube.id());
         ctx.export("kubeconfig", kube.kubeconfig());
     }
 
@@ -112,10 +113,11 @@ public class JarvisIaC {
         DatabaseInstance databaseInstance = new DatabaseInstance("jarvis-ai-embeddings-01", databaseInstanceArgs, timeout);
         
         // 2.13-iac-db-conf-export
-        ctx. export("db_port", database.endpoints().applyValue(endpoint -> endpoint.getFirst().port()));
-        ctx. export("db_host", database.endpoints().applyValue(endpoint -> endpoint.getFirst().domain()));
-        ctx. export("db_id", database.id());
+        ctx.export("db_port", database.endpoints().applyValue(endpoint -> endpoint.getFirst().port()));
+        ctx.export("db_host", database.endpoints().applyValue(endpoint -> endpoint.getFirst().domain()));
+        ctx.export("db_id", database.id());
 
-        ctx.export("avnadmin-password", postgresSqlUser.password());
+        ctx.export("db_user", postgresSqlUser.name());
+        ctx.export("db_password", postgresSqlUser.password());
     }
 }

@@ -17,7 +17,7 @@ import jakarta.ws.rs.core.MediaType;
 public class ChatbotRestResource {
   private static final Logger _LOG = LoggerFactory.getLogger(ChatbotRestResource.class);
 
-  // 1.09-app-chatbot-rest-client
+  // 1.09-app-chatbot-inject-svc
   @Inject
   ChatbotService chatbotService;
   

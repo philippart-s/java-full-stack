@@ -11,4 +11,4 @@ bat -P -r 10: $(basename "$0")
 export KUBECONFIG=./kubeconfig-ovh.yml
 
 # Create secrets
-kubectl create secret generic devoxx-secrets --from-env-file=../.env -n jarvis
+kubectl create secret generic devoxx-secrets --from-env-file=../.env --from-env-file=../.talk.env -n jarvis

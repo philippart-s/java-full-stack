@@ -17,4 +17,4 @@ clear
 bat -P -r 19: $(basename "$0")
 
 # Display Docker images
-docker images
+docker images | grep jarvis-operator
