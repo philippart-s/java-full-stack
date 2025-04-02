@@ -31,13 +31,7 @@ pipeline {
         stage('🏷️ Tag et Push dans GitHub 🐙') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                    sh 'git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/java-full-stack.git'
-                    sh 'git config --global user.password "${GIT_PASSWORD}"'
-                    sh 'git config --global user.name "${GIT_USERNAME}"'
-                    sh 'git config --global user.email "wildagsx@gmail.com"'
-                    sh 'git config -l'
-                    sh 'git tag -a v${BUILD_NUMBER} -m "🏷️ Release ${BUILD_NUMBER}"'
-                    sh 'git push origin v${BUILD_NUMBER}'
+                    jarvis.tag(${GIT_USERNAME}, ${GIT_PASSWORD}, ${v$BUILD_NUMBER})
                 }
             }
         }
