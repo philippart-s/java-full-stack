@@ -8,9 +8,7 @@ pipeline {
         stage('📦 Build Quarkus app ⚡️') {
             steps {
                 dir('jarvis-app') {
-                script {
-                    jarvis.buildMaven()
-                    }
+                    sh 'mvn clean package'
                 }
             }
         }
@@ -41,11 +39,9 @@ pipeline {
         stage('🪪 Release GitHub 🪪') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
-                    sh 'curl -X POST \
-                         https://api.github.com/repos/${GIT_USERNAME}/java-full-stack/releases \
-                         -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-                         -H "Content-Type: application/json" \
-                         -d "{\\"tag_name\\": \\"v$BUILD_NUMBER\\", \\"name\\": \\"Release $BUILD_NUMBER\\", \\"draft\\": false, \\"prerelease\\": false}"'
+                     script {
+                        jarvis.release(userName: GIT_USERNAME, password: GIT_PASSWORD, buildNumber: BUILD_NUMBER)
+                     }
                 }
             }
         }
