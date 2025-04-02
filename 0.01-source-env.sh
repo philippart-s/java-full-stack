@@ -4,7 +4,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Source environment variables
 set -a
-source $SCRIPT_DIR/.talk.bck.env
+source $SCRIPT_DIR/.talk.env
 source $SCRIPT_DIR/.env
 set +a
 

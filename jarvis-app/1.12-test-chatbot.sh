@@ -10,6 +10,9 @@ bat -P -r 10:12 $(basename "$0")
 # Test chatbot
 curl -N -X POST -H "Content-Type: text/plain" -d "Bonjour, peux-tu me dire ce qu'est la conférence Devoxx France s'il te plaît ?" http://localhost:8080/chatbot-api
 
+echo ""
+echo ""
+
 read -n 1 -p "Press any key to continue"
 clear
 

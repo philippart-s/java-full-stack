@@ -7,15 +7,20 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
 
 # 🗑️ Clean the demo 🗑️
 ## 🗂️ Clean [_init](./_init/) folder:
-  - `rm -rf jarvis-app-init`
-  - `rm -rf jarvis-cli-init`
-  - `rm -rf jarvis-iac-init`
-  - `rm -rf jarvis-operator-init`
+- `rm -rf jarvis-app-init`
+- `rm -rf jarvis-cli-init`
+- `rm -rf jarvis-iac-init`
+- `rm -rf jarvis-operator-init`
 
 ## 🏗️ Clean Pulumi stacks 🏗️
-  - `pulumi stack ls`
-  - `pulumi destroy` in each stack (`pulumi select <stack name>`)
-  - `pulumi stack rm <stack name>`
+- `pulumi stack ls`
+- `pulumi destroy` in each stack (`pulumi select <stack name>`)
+- `pulumi stack rm <stack name>`
+
+## ☑ Before starting ☑️
+
+- turn-off the VPN
+- 
 
 # ⚡️ 01 - Quarkus app : [jarvis-app](./jarvis-app/) ⚡️
 ## 📼 Backend 📼
@@ -27,60 +32,60 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
  - add `quarkus-langchain4j-mistral-ai` extension (`1.04-add-quarkus-langchain-ext.sh`)
  - configure extension in [application.properties](./jarvis-app/src/main/resources/application.properties) file (`1.05-app-langchain4j-cfg`)
  - create [ChatbotService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/ChatbotService.java) interface
-  - add AI interface annotations (`1.06-app-ai-service`)
-  - add AI interface prompts (`1.07-app-ai-prompts`)
+   - add AI interface annotations (`1.06-app-ai-service`)
+   - add AI interface prompts (`1.07-app-ai-prompts`)
  - create [ChatbotRestResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/ChatbotRestResource.java) class
-  - add path (`1.08-app-chatbot-rest-path`)
-  - inject rest client (`1.09-app-chatbot-rest-client`)
+   - add path (`1.08-app-chatbot-rest-path`)
+   - inject rest client (`1.09-app-chatbot-inject-svc`)
   - add `ask` method anotions (`1.10-app-chatbot-rest-ask-annot`)
-  - call the model (`1.11-app-chatbot-rest-call-model`)
+   - call the model (`1.11-app-chatbot-rest-call-model`)
  - test the chatbot: [1.12-test-chatbot.sh](./jarvis-app/1.12-test-chatbot.sh)
  - add `quarkus-rest-jackson` and `quarkus-rest-client-jackson` extension and remove the `quarkus-rest` extension: [1.13-add-quarkus-rest-ext.sh](./jarvis-app/1.13-add-quarkus-rest-ext.sh)
  - add rest client configuration in [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.14-app-rest-client-cfg`)
  - create [DevoxxCFPService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxCFPService.java)
-  - add interface annotation (`1.15-app-add-devoxx-svc-annot`)
-  - add `getConferences` method (`1.16-app-add-devoxx-getConf`)
+   - add interface annotation (`1.15-app-add-devoxx-svc-annot`)
+   - add `getConferences` method (`1.16-app-add-devoxx-getConf`)
  - create [DevoxxCFPResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java)
-  - add root path `/devoxx-talks` (`1.17-app-devoxx-resource-path`)
-  - inject rest client (`1.18-app-devoxx-resource-rest-client`)
-  - add `getConferences` method annotation (`1.19-app-devoxx-resource-get-conferences-annot`) 
-  - add `getConferences` method body (`1.20-app-devoxx-resource-get-conf-body`)
-  - test API : [1.21-test-devoxx-api.sh](./jarvis-app/1.21-test-devoxx-api.sh)
- - add the `langchain4j-ovh-ai` dependecy in the [pom.xml](./jarvis-app/pom.xml) (`1.22-app-ovhai-dependency`)
- - add `quarkus-langchain4j-pgvector, quarkus-langchain4j-easy-rag` extensions: [1.23-add-quarkus-pgvector-rag-ext.sh](./jarvis-app/1.23-add-quarkus-pgvector-rag-ext.sh) 
+   - add root path `/devoxx-talks` (`1.17-app-devoxx-resource-path`)
+   - inject rest client (`1.18-app-devoxx-resource-rest-client`)
+   - add `getConferences` method annotation (`1.19-app-devoxx-resource-get-conferences-annot`) 
+   - add `getConferences` method body (`1.20-app-devoxx-resource-get-conf-body`)
+   - test API : [1.21-test-devoxx-api.sh](./jarvis-app/1.21-test-devoxx-api.sh)
+ - add the `langchain4j-ovh-ai` dependency in the [pom.xml](./jarvis-app/pom.xml) (`1.22-app-ovhai-dependency`)
+ - add `quarkus-langchain4j-pgvector, quarkus-langchain4j-easy-rag` extensions: [1.23-add-quarkus-pgvector-rag-ext.sh](./jarvis-app/1.22-add-quarkus-pgvector-rag-ext.sh) 
  - add RAG parameters in [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.24-app-rag-cfg`)
  - create [RegisterOVHEmbededModel](./jarvis-app/src/main/java/fr/wilda/fullstack/config/RegisterOVHEmbededModel.java)
-  - set class annotation (`1.25-app-embedding-model-annot`)
-  - add the `Produces` annotation (`1.26-app-embedding-model-producer`)
-  - configure the OVHcloud embedding model (`1.27-app-enbedding-model-ovh-model`)
+   - set class annotation (`1.25-app-embedding-model-annot`)
+   - add the `Produces` annotation (`1.26-app-embedding-model-producer`)
+   - configure the OVHcloud embedding model (`1.27-app-enbedding-model-ovh-model`)
  - create the [DevoxxDataEmbeddingService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) class
-  - inject the embedding store and model (`1.28-app-data-embedding-svc-inject`)
-  - inject the Devoxx service (`1.29-app-data-devoxx-svc-inject`)
-  - ingest talks (`1.30-app-data-devoxx-svc-ingest`)
-  - create the `deleteAll` method (`1.31-app-data-devoxx-svc-deleteall`)
+   - inject the embedding store and model (`1.28-app-data-embedding-svc-inject`)
+   - inject the Devoxx service (`1.29-app-data-devoxx-svc-inject`)
+   - ingest talks (`1.30-app-data-devoxx-svc-ingest`)
+   - create the `deleteAll` method (`1.31-app-data-devoxx-svc-deleteall`)
  - update the [DevoxxCFPResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java)
-  - inject [DevoxxDataEmbeddingService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) (`1.32-app-devoxx-resource-rest-embedding`)
-  - add `/synchro` and `/delete` route (`1.33-app-devoxx-resource-rest-synchro`)
-  - run synchronisation: [1.34-test-synchro.sh](./jarvis-app/1.34-test-synchro.sh)
+   - inject [DevoxxDataEmbeddingService](./jarvis-app/src/main/java/fr/wilda/fullstack/services/DevoxxDataEmbeddingService.java) (`1.32-app-devoxx-resource-rest-embedding`)
+   - add `/synchro` and `/delete` route (`1.33-app-devoxx-resource-rest-synchro`)
+   - run synchronisation: [1.34-test-synchro.sh](./jarvis-app/1.34-test-synchro.sh)
  - test again the chatbot: [1.35-test-chatbot-after-synchro.sh](./jarvis-app/1.35-test-chatbot-after-synchro.sh)
  - add prod configuration for DB in the [application.properties](./jarvis-app/src/main/resources/application.properties) (`1.36-app-db-prod-config`)
 
 ## 🎨 Frontend 🎨
  - add the 'quarkus-qute-web' extension [1.37-add-quarkus-qute-ext.sh](./jarvis-app/1.37-add-quarkus-qute-ext.sh)
  - create the [devoxxconference.html](./jarvis-app/src/main/resources/templates/DevoxxCFPResource/devoxxconference.html) 
-  - add the HTML code to call the template (`1.38-app-devoxx-confs-html`)
+   - add the HTML code to call the template (`1.38-app-devoxx-confs-html`)
  - update [DevoxxCFPResource.java](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/DevoxxCFPResource.java) class
-  - inject the template (`1.39-app-devoxx-resource-template-inject`)
-  - create the `index` endpoint (`1.40-app-devoxx-resource-template-index`)
-  - create the `template` endpoint (`1.41-app-devoxx-resource-template`)
+   - inject the template (`1.39-app-devoxx-resource-template-inject`)
+   - create the `index` endpoint (`1.40-app-devoxx-resource-template-index`)
+   - create the `template` endpoint (`1.41-app-devoxx-resource-template`)
  - test the application to display Devoxx talks: `http://localhost:8080/devoxx-talks/index`
  - dev UI: `http://localhost:8080/q/dev-ui/welcome`
  - add `quarkus-websockets-next` extension: [1.42-add-quarkus-websocket-ext.sh](./jarvis-app/1.42-add-quarkus-websocket-ext.sh)
  - create the [ChatBotWebsocketResource](./jarvis-app/src/main/java/fr/wilda/fullstack/resources/ChatBotWebsocketResource.java)
-  - add the `WebSocket` annotation (`1.43-app-chatbot-ws-annot`)
-  - inject `ChabotService` (`1.44-app-chatbot-ws-inject-svc`)
-  - create the `onMessage` method (`1.45-app-chatbot-ws-on-message`)
-  - test the chatbot: `http://localhost:8080/`
+   - add the `WebSocket` annotation (`1.43-app-chatbot-ws-annot`)
+   - inject `ChabotService` (`1.44-app-chatbot-ws-inject-svc`)
+   - create the `onMessage` method (`1.45-app-chatbot-ws-on-message`)
+ - test the chatbot: `http://localhost:8080/`
 
 # 🧩 02 - Infrastructure as Code : [jarvis-iac](./jarvis-iac) 🧩
 
@@ -163,7 +168,6 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
   - deploy operator on managed Kubernetes
     - build and push Docker image (`4.36-push-operator-image.sh`)
     - add [kubernetes.yml](./jarvis-operator/src/main/kubernetes/kubernetes.yml) file 
-    - remove `docker.io` from [kubernetes.yml](./jarvis-operator/target/kubernetes/kubernetes.yml)
     - create namespaces in Kubernetes (`4.37-create-mks-ns.sh`)
     - create CRDs in managed Kubernetes (`4.38-create-mks-crds`)
     - deploy the operator (`4.39-deploy-operator-on-mks`)
@@ -200,10 +204,11 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
     - add `call` (`5.14-devoxx-call`)
   - add `DevoxxSubCommand` to the `JarvisCommand` class
   - create native CLI
-    - set logs (`5.15-prod-logs`) in [application.properties](./jarvis-cli/src/main/resources/application.properties)
+    - set logs (`5.15-prod-logs`)
     - run [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
-  - test CLI [5.17-test-target-cli.sh](./jarvis-cli/5.17-test-target-cli.sh) && [5.18-test-jarvis-linux-cli.sh](./jarvis-cli/bin/5.18-test-jarvis-linux-cli.sh)
+  - test CLI [5.17-test-target-cli.sh](./jarvis-cli/5.17-test-target-cli.sh)
   - add `GenerateCompletion.class`
   - build again the CLI [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
-  - test CLI: [5.19-set-env.sh](jarvis-cli/bin/5.19-set-env.sh) & [5.20-add-auto-completion.sh](jarvis-cli/bin/5.20-add-auto-completion.sh)
-  
+  - test CLI: 
+    - [5.19-set-env.sh](jarvis-cli/bin/5.19-set-env.sh) 
+    - `export JARVIS_API_URL=http://$NODE_PUBLIC_IP:30080`

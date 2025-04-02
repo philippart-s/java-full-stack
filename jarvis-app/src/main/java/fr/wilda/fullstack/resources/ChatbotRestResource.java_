@@ -8,7 +8,7 @@ import io.smallrye.mutiny.Multi;
 public class ChatbotRestResource {
   private static final Logger _LOG = LoggerFactory.getLogger(ChatbotRestResource.class);
 
-  // 1.09-app-chatbot-rest-client
+  // 1.09-app-chatbot-inject-svc
    
   // 1.10-app-chatbot-rest-ask-annot
   public Multi<String> ask(String question) {
