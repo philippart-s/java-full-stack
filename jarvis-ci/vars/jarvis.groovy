@@ -8,7 +8,7 @@ def tag(String userName, String password, long buildNumber) {
     sh "git push origin v${buildNumber}"
 }
 
-def release(String userName, String password, String token) {
+def release(String userName, String token, String buildNumber) {
     sh "curl -X POST \
          https://api.github.com/repos/${userName}/java-full-stack/releases \
          -H \"Authorization: Bearer ${token}\" \
