@@ -9,7 +9,7 @@ pipeline {
             steps {
                 dir('jarvis-app') {
                 script {
-                    jarvis.buildMaven
+                    jarvis.buildMaven()
                     }
                 }
             }
