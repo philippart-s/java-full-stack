@@ -31,7 +31,9 @@ pipeline {
         stage('🏷️ Tag et Push dans GitHub 🐙') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                    jarvis.tag(${GIT_USERNAME}, ${GIT_PASSWORD}, ${v$BUILD_NUMBER})
+                    script {
+                        jarvis.tag(${GIT_USERNAME}, ${GIT_PASSWORD}, ${v$BUILD_NUMBER})
+                    }
                 }
             }
         }
