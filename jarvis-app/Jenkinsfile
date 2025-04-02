@@ -8,7 +8,9 @@ pipeline {
         stage('📦 Build Quarkus app ⚡️') {
             steps {
                 dir('jarvis-app') {
+                script {
                     jarvis.buildMaven
+                    }
                 }
             }
         }
