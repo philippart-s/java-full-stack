@@ -6,15 +6,15 @@ pipeline {
     stages {
         // 3.02-jenkins-app-build
         stage('📦 Build Quarkus app ⚡️') {
-            steps {
+            /*steps {
                 dir('jarvis-app') {
                     sh 'mvn clean package'
                 }
-            }
+            }*/
         }
         // 3.03-jenkins-docker-build
         stage('🐳 Build Docker image 🐳') {
-            steps {
+            /*steps {
                 dir('jarvis-app') {
                     script {
                         docker.withRegistry('https://95y036e0.gra7.container-registry.ovh.net/devoxx', 'harbor') {
@@ -23,7 +23,7 @@ pipeline {
                         }
                     }
                 }
-            }
+            }*/
         }
         // 3.04-jenkins-github-tag
         stage('🏷️ Tag et Push dans GitHub 🐙') {
