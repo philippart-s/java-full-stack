@@ -11,9 +11,9 @@ def ghTag(userName, password, buildNumber) {
 def ghRelease(userName, token, buildNumber) {
     sh '''
       curl -X POST 
-      https://api.github.com/repos/${userName}/java-full-stack/releases 
-      -H "Authorization: Bearer ${token}" 
-      -H "Content-Type: application/json" 
+      https://api.github.com/repos/${userName}/java-full-stack/releases \
+      -H "Authorization: Bearer ${token}" \
+      -H "Content-Type: application/json" \
       -d "{\"tag_name\": \"v$buildNumber\", \"name\": \"Release $buildNumber\", \"draft\": false, \"prerelease\": false}"
       '''
 }
