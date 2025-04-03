@@ -13,5 +13,5 @@ def ghRelease(userName, token, buildNumber) {
        https://api.github.com/repos/$userName/java-full-stack/releases \
       -H "Authorization: Bearer $token" \
       -H "Content-Type: application/json" \
-      -d "{\"tag_name\": \"$buildNumber\", \"name\": \"Release $buildNumber\", \"draft\": false, \"prerelease\": false}"'
+      -d "{\\"tag_name\\": \\"$buildNumber\\", \\"name\\": \\"Release $buildNumber\\", \\"draft\\": false, \\"prerelease\\": false}"'
 }
