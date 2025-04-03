@@ -9,23 +9,23 @@ pipeline {
         stage('📦 Build Quarkus app ⚡️') {
             steps {
                 echo '📦 Build Quarkus app ⚡️'
-                /*dir('jarvis-app') {
+                dir('jarvis-app') {
                     sh 'mvn clean package'
-                }*/
+                }
             }
         }
         // 3.03-jenkins-docker-build
         stage('🐳 Build Docker image 🐳') {
             steps {
                 echo '🐳 Build Docker image 🐳'
-                /*dir('jarvis-app') {
+                dir('jarvis-app') {
                     script {
                         docker.withRegistry('https://95y036e0.gra7.container-registry.ovh.net/devoxx', 'harbor') {
                             def image = docker.build('95y036e0.gra7.container-registry.ovh.net/devoxx/jarvis-app', '-f src/main/docker/Dockerfile.jvm .')
                             image.push("v${env.BUILD_NUMBER}")
                         }
                     }
-                }*/
+                }
             }
         }
         // 3.04-jenkins-github-tag
@@ -41,8 +41,8 @@ pipeline {
         // 3.05-jenkins-github-release
         stage('🪪 Release GitHub 🪪') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
-                     script {
+               script {
+                   withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                         jarvis.ghRelease(GIT_USERNAME, GITHUB_TOKEN, BUILD_NUMBER)
                      }
                 }
