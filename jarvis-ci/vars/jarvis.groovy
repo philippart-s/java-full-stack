@@ -1,5 +1,5 @@
 
-def ghTag(String userName, String password, long buildNumber) {
+def tag(String userName, String password, long buildNumber) {
     echo 'ghTag'
     sh "git remote set-url origin https://${userName}:${password}@github.com/${userName}/java-full-stack.git"
     sh "git config --global user.password \"${password}\""
