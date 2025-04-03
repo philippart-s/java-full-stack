@@ -1,4 +1,4 @@
-@Library(jarvis) _
+@Library('jarvis') _
 
 // 3.01-jenkins-pipeline
 pipeline {
