@@ -45,7 +45,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                      script {
                         echo 'ff'
-                        //jarvis.ghRelease(userName: GIT_USERNAME, token: GITHUB_TOKEN, buildNumber: BUILD_NUMBER)
+                        jarvis.ghRelease(userName: GIT_USERNAME, token: GITHUB_TOKEN, buildNumber: BUILD_NUMBER)
                      }
                 }
             }

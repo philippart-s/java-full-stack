@@ -1,6 +1,6 @@
 
 def tag(String userName, String password, long buildNumber) {
-    blabla 'ghTag'
+    sh 'ghTag'
     /*sh "git remote set-url origin https://${userName}:${password}@github.com/${userName}/java-full-stack.git"
     sh "git config --global user.password \"${password}\""
     sh "git config --global user.name \"${userName}\""
