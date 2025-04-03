@@ -1,3 +1,4 @@
+@Library(jarvis) _
 
 // 3.01-jenkins-pipeline
 pipeline {
