@@ -8,4 +8,4 @@ clear
 bat -P -r 10: $(basename "$0")
 
 # Send a "GitHub" release event
-curl --header "Content-Type: application/json" --request POST --data '{"ref": "v99", "ref_type": "tag"}' http://localhost:8080/webhook/event
+curl --header "Content-Type: application/json" --request POST --data '{"ref": "v1", "ref_type": "tag"}' http://localhost:8080/webhook/event
