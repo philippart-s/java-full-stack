@@ -2,7 +2,7 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 // 2.04-iac-dependencies
 //DEPS com.pulumi:pulumi:1.+
-//DEPS com.ovhcloud.pulumi.ovh:pulumi-ovh:1.6.0
+//DEPS com.ovhcloud.pulumi.ovh:pulumi-ovh:2.1.0
 //DEPS org.slf4j:slf4j-api:2.1.0-alpha1
 //DEPS org.slf4j:slf4j-log4j12:2.1.0-alpha1
 
@@ -52,21 +52,21 @@ public class JarvisIaC {
         // 2.07-iac-kube-details
         KubeArgs kubeDetails = KubeArgs.builder()
                                         .serviceName(OVH_CLOUD_PROJECT_SERVICE)
-                                        .name("jarvis-devoxx-01")
+                                        .name("jarvis-devoxx")
                                         .region("GRA7")
                                     .build();
-        Kube kube = new Kube("jarvis-devoxx-01", kubeDetails, timeout);
+        Kube kube = new Kube("jarvis-devoxx", kubeDetails, timeout);
         
         // 2.08-iac-kube-nodepool-details
         KubeNodePoolArgs nodePoolDetails = KubeNodePoolArgs.builder()
                                             .serviceName(OVH_CLOUD_PROJECT_SERVICE)
-                                            .name("jarvis-devoxx-01-nodepool")
+                                            .name("jarvis-devoxx-nodepool")
                                             .flavorName("d2-4")
                                             .kubeId(kube.id().asPlaintext())
                                             .minNodes(1)
                                             .maxNodes(1)
                                         .build();
-        KubeNodePool nodePool = new KubeNodePool("jarvis-devoxx-01-nodepool", nodePoolDetails, timeout);
+        KubeNodePool nodePool = new KubeNodePool("jarvis-devoxx-nodepool", nodePoolDetails, timeout);
 
         // 2.09-iac-kube-kubeconfig
         ctx.export("kube_id", kube.id());
@@ -80,7 +80,7 @@ public class JarvisIaC {
             .build();
 
         DatabaseArgs databaseArgs = DatabaseArgs.builder()
-            .description("jarvis-database-01")
+            .description("jarvis-devoxx-database")
             .flavor("db1-4")
             .plan("essential")
             .serviceName(OVH_CLOUD_PROJECT_SERVICE)
@@ -89,7 +89,7 @@ public class JarvisIaC {
             .nodes(databaseNodeArgs)
             .build();
 
-        Database database = new Database("jarvis-database-01", databaseArgs, timeout);
+        Database database = new Database("jarvis-devoxx-database", databaseArgs, timeout);
 
         // 2.11-iac-db-postgres-user
         PostgresSqlUserArgs postgresSqlUserArgs = PostgresSqlUserArgs.builder()
@@ -107,10 +107,10 @@ public class JarvisIaC {
             .clusterId(database.id())
             .serviceName(OVH_CLOUD_PROJECT_SERVICE)
             .engine("postgresql")
-            .name("jarvis-ai-embeddings-01")
+            .name("jarvis-ai-embeddings")
             .build();
 
-        DatabaseInstance databaseInstance = new DatabaseInstance("jarvis-ai-embeddings-01", databaseInstanceArgs, timeout);
+        DatabaseInstance databaseInstance = new DatabaseInstance("jarvis-ai-embeddings", databaseInstanceArgs, timeout);
         
         // 2.13-iac-db-conf-export
         ctx.export("db_port", database.endpoints().applyValue(endpoint -> endpoint.getFirst().port()));
