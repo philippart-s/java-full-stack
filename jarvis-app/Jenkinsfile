@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                        jarvis.ghTag(userName: GIT_USERNAME, password: GIT_PASSWORD, buildNumber: BUILD_NUMBER)
+                        jarvis.ghTag(GIT_USERNAME, GIT_PASSWORD, BUILD_NUMBER)
                     }
                 }
             }
