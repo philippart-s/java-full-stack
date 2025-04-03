@@ -1,7 +1,5 @@
 @Library('jarvis@advanced-jenkins') _
 
-jarvis.ghTag("dd", "ss", 4)
-
 // 3.01-jenkins-pipeline
 pipeline {
     agent any
@@ -33,8 +31,8 @@ pipeline {
         // 3.04-jenkins-github-tag
         stage('🏷️ Tag et Push dans GitHub 🐙') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                    script {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         jarvis.ghTag(userName: GIT_USERNAME, password: GIT_PASSWORD, buildNumber: BUILD_NUMBER)
                     }
                 }
