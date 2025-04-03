@@ -10,8 +10,8 @@ def ghTag(userName, password, buildNumber) {
     sh "git push origin v${buildNumber}"*/
 }
 
-def ghRelease(String userName, String token, String buildNumber) {
-    sh 'echo"ghRelease"'
+def ghRelease(userName, token, buildNumber) {
+    echo userName
     /*sh "curl -X POST \
          https://api.github.com/repos/${userName}/java-full-stack/releases \
          -H \"Authorization: Bearer ${token}\" \
