@@ -22,4 +22,4 @@ done
 echo "External load balancer IP: $LB_EXTERNAL_IP"
 
 # Send a "GitHub" release event
-curl --header "Content-Type: application/json" --request POST --data '{"ref": "v99", "ref_type": "tag"}' http://$LB_EXTERNAL_IP/webhook/event
+curl --header "Content-Type: application/json" --request POST --data '{"ref": "v1", "ref_type": "tag"}' http://$LB_EXTERNAL_IP/webhook/event

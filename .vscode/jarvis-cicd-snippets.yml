@@ -1,28 +1,52 @@
-snippet 3.01-jenkins-pipeline:
-  prefix: "3.01-jenkins-pipeline"
-  name: "3.01-jenkins-pipeline"
+snippet 3.01-ghtag:
+  prefix: "3.01-ghtag"
+  name: "3.01-ghtag"
+  scope: "groovy"
+  body: |
+    sh "git remote set-url origin https://\${userName}:${password}@github.com/\${userName}/java-full-stack.git"
+    sh "git config --global user.password \"\${password}\""
+    sh "git config --global user.name \"\${userName}\""
+    sh 'git config --global user.email "wildagsx@gmail.com"'
+    sh "git tag -a v\${buildNumber} -m \"🏷️ Release \${buildNumber}\""
+    sh "git push origin v\${buildNumber}"
+
+snippet 3.02-ghrelease:
+  prefix: "3.02-ghrelease"
+  name: "3.02-ghrelease"
+  scope: "groovy"
+  body: |
+    sh """
+        curl -X POST https://api.github.com/repos/\${userName}/java-full-stack/releases \
+        -H "Authorization: Bearer \${token}" \
+        -H "Content-Type: application/json" \
+        -d "{\\"tag_name\\": \\"v\${buildNumber}\\", \\"name\\": \\"Release \${buildNumber}\\", \\"draft\\": false, \\"prerelease\\": false}"
+    """
+
+snippet 3.03-jenkins-pipeline:
+  prefix: "3.03-jenkins-pipeline"
+  name: "3.03-jenkins-pipeline"
   scope: "groovy"
   body: |
     pipeline {
         agent any
 
         stages {
-            // 3.02-jenkins-app-build
+            // 3.04-jenkins-app-build
     
-            // 3.03-jenkins-docker-build
+            // 3.05-jenkins-docker-build
 
-            // 3.04-jenkins-github-tag
+            // 3.06-jenkins-github-tag
 
-            // 3.05-jenkins-github-release
+            // 3.07-jenkins-github-release
         }
     
-        // 3.06-jenkins-post-pipeline
+        // 3.08-jenkins-post-pipeline
     }
 
 
-snippet 3.02-jenkins-app-build:
-  prefix: "3.02-jenkins-app-build"
-  name: "3.02-jenkins-app-build"
+snippet 3.04-jenkins-app-build:
+  prefix: "3.04-jenkins-app-build"
+  name: "3.04-jenkins-app-build"
   scope: "groovy"
   body: |
     stage('📦 Build Quarkus app ⚡️') {
@@ -33,9 +57,9 @@ snippet 3.02-jenkins-app-build:
         }
     }
 
-snippet 3.03-jenkins-docker-build:
-  prefix: "3.03-jenkins-docker-build"
-  name: "3.03-jenkins-docker-build"
+snippet 3.05-jenkins-docker-build:
+  prefix: "3.05-jenkins-docker-build"
+  name: "3.05-jenkins-docker-build"
   scope: "groovy"
   body: |
     stage('🐳 Build Docker image 🐳') {
@@ -51,45 +75,39 @@ snippet 3.03-jenkins-docker-build:
         }
     }
 
-snippet 3.04-jenkins-github-tag:
-  prefix: "3.04-jenkins-github-tag"
-  name: "3.04-jenkins-github-tag"
+snippet 3.06-jenkins-github-tag:
+  prefix: "3.06-jenkins-github-tag"
+  name: "3.06-jenkins-github-tag"
   scope: "groovy"
   body: |
     stage('🏷️ Tag et Push dans GitHub 🐙') {
         steps {
-            withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                sh 'git remote set-url origin https://\${GIT_USERNAME}:\${GIT_PASSWORD}@github.com/\${GIT_USERNAME}/java-full-stack.git'
-                sh 'git config --global user.password "\${GIT_PASSWORD}"'
-                sh 'git config --global user.name "\${GIT_USERNAME}"'
-                sh 'git config --global user.email "wildagsx@gmail.com"'
-                sh 'git config -l'
-                sh 'git tag -a v\${BUILD_NUMBER} -m "🏷️ Release \${BUILD_NUMBER}"'
-                sh 'git push origin v\${BUILD_NUMBER}'
+            script {
+                withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    jarvis.ghTag(GIT_USERNAME, GIT_PASSWORD, BUILD_NUMBER)
+                }
             }
         }
     }
 
-snippet 3.05-jenkins-github-release:
-  prefix: "3.05-jenkins-github-release"
-  name: "3.05-jenkins-github-release"
+snippet 3.07-jenkins-github-release:
+  prefix: "3.07-jenkins-github-release"
+  name: "3.07-jenkins-github-release"
   scope: "groovy"
   body: |
     stage('🪪 Release GitHub 🪪') {
         steps {
-            withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
-                sh 'curl -X POST \
-                      https://api.github.com/repos/\${GIT_USERNAME}/java-full-stack/releases \
-                      -H "Authorization: Bearer \${GITHUB_TOKEN}" \
-                      -H "Content-Type: application/json" \
-                      -d "{\\"tag_name\\": \\"v\$BUILD_NUMBER\\", \\"name\\": \\"Release \$BUILD_NUMBER\\", \\"draft\\": false, \\"prerelease\\": false}"'
+           script {
+               withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                    jarvis.ghRelease(GIT_USERNAME, GITHUB_TOKEN, BUILD_NUMBER)
+                 }
             }
         }
     }
 
-snippet 3.06-jenkins-post-pipeline:
-  prefix: "3.06-jenkins-post-pipeline"
-  name: "3.06-jenkins-post-pipeline"
+snippet 3.08-jenkins-post-pipeline:
+  prefix: "3.08-jenkins-post-pipeline"
+  name: "3.08-jenkins-post-pipeline"
   scope: "groovy"
   body: |
     post {

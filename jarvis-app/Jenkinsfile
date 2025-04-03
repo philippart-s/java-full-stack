@@ -1,3 +1,4 @@
+@Library('jarvis@advanced-jenkins') _
 
 // 3.01-jenkins-pipeline
 pipeline {
@@ -7,6 +8,7 @@ pipeline {
         // 3.02-jenkins-app-build
         stage('📦 Build Quarkus app ⚡️') {
             steps {
+                echo '📦 Build Quarkus app ⚡️'
                 dir('jarvis-app') {
                     sh 'mvn clean package'
                 }
@@ -15,6 +17,7 @@ pipeline {
         // 3.03-jenkins-docker-build
         stage('🐳 Build Docker image 🐳') {
             steps {
+                echo '🐳 Build Docker image 🐳'
                 dir('jarvis-app') {
                     script {
                         docker.withRegistry('https://95y036e0.gra7.container-registry.ovh.net/devoxx', 'harbor') {
@@ -28,26 +31,20 @@ pipeline {
         // 3.04-jenkins-github-tag
         stage('🏷️ Tag et Push dans GitHub 🐙') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                    sh 'git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/java-full-stack.git'
-                    sh 'git config --global user.password "${GIT_PASSWORD}"'
-                    sh 'git config --global user.name "${GIT_USERNAME}"'
-                    sh 'git config --global user.email "wildagsx@gmail.com"'
-                    sh 'git config -l'
-                    sh 'git tag -a v${BUILD_NUMBER} -m "🏷️ Release ${BUILD_NUMBER}"'
-                    sh 'git push origin v${BUILD_NUMBER}'
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                        jarvis.ghTag(GIT_USERNAME, GIT_PASSWORD, BUILD_NUMBER)
+                    }
                 }
             }
         }
         // 3.05-jenkins-github-release
         stage('🪪 Release GitHub 🪪') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
-                    sh 'curl -X POST \
-                         https://api.github.com/repos/${GIT_USERNAME}/java-full-stack/releases \
-                         -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-                         -H "Content-Type: application/json" \
-                         -d "{\\"tag_name\\": \\"v$BUILD_NUMBER\\", \\"name\\": \\"Release $BUILD_NUMBER\\", \\"draft\\": false, \\"prerelease\\": false}"'
+               script {
+                   withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                        jarvis.ghRelease(GIT_USERNAME, GITHUB_TOKEN, BUILD_NUMBER)
+                     }
                 }
             }
         }
