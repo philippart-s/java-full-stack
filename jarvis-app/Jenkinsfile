@@ -33,8 +33,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                     script {
-                        echo 'ee'
-                        jarvis.tag(userName: GIT_USERNAME, password: GIT_PASSWORD, buildNumber: BUILD_NUMBER)
+                        jarvis.ghTag(userName: GIT_USERNAME, password: GIT_PASSWORD, buildNumber: BUILD_NUMBER)
                     }
                 }
             }
@@ -44,7 +43,6 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'gh-token',  usernameVariable: 'GIT_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                      script {
-                        echo 'ff'
                         jarvis.ghRelease(userName: GIT_USERNAME, token: GITHUB_TOKEN, buildNumber: BUILD_NUMBER)
                      }
                 }
