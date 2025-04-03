@@ -214,4 +214,5 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
 - test CLI [5.17-test-target-cli.sh](./jarvis-cli/5.17-test-target-cli.sh)
 - add `GenerateCompletion.class`
 - build again the CLI [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
-- test CLI: [5.19-set-env.sh](jarvis-cli/bin/5.19-set-env.sh) & [5.20-add-auto-completion.sh](jarvis-cli/bin/5.20-add-auto-completion.sh)
+- set env variables `source ./5.19-set-env.sh`
+- test autocompletion with CLI
