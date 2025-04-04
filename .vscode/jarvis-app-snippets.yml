@@ -259,7 +259,7 @@ snippet 1.38-app-devoxx-confs-html:
   name: "1.38-app-devoxx-confs-html"
   scope: "html"
   body: |
-    <a href="/devoxx-talks/template">🎙️ Get talks 🎙️</a>
+    <a href="/devoxx-talks/lst-talks">🎙️ Get talks 🎙️</a>
     </br>
     </br>
 

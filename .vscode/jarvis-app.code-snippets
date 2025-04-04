@@ -313,7 +313,7 @@
   },
   "1.38-app-devoxx-confs-html": {
     "body": [
-      "\u003ca href=\"/devoxx-talks/template\"\u003e🎙️ Get talks 🎙️\u003c/a\u003e",
+      "\u003ca href=\"/devoxx-talks/lst-talks\"\u003e🎙️ Get talks 🎙️\u003c/a\u003e",
       "\u003c/br\u003e",
       "\u003c/br\u003e",
       "",

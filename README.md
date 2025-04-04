@@ -216,3 +216,18 @@ The simpliest way to use this code is to re-open the project with the Dev Contai
 - build again the CLI [5.16-create-native-cli.sh](./jarvis-cli/5.16-create-native-cli.sh)
 - set env variables `source ./5.19-set-env.sh`
 - test autocompletion with CLI
+
+
+## 📝 Talk notes 📝
+
+### Pulumi's environments
+
+    - `devoxx`:
+        - kube: `a1dd8a5e-9115-47d9-9a46-4653f86e4441`
+        - DB: `86bb4553-080b-4296-aac1-ee6365b2fb4c`
+    - `devoxx-01`:
+        - kube: `567b165e-cd75-4b25-b9bf-72b1eb7df447`
+        - DB: `d24328ab-1e40-4a28-90fb-dccdaf21bff3`
+    - `devoxx-02`:
+        - kube: `2ad23f32-1fba-4829-8c29-35bfe6f735ab`
+        - DB: `8d71a1b6-64bd-4a39-a372-c2a569eba923`
