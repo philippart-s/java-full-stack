@@ -8,7 +8,7 @@ clear
 bat -P -r 10: $(basename "$0")
 
 # 🏗️  Create the infrastructure 🏗️
-pulumi stack select devoxx
+#pulumi stack select devoxx
 pulumi up
 
 ## 🛠️  Generate kubeconfig-ovh file 🛠️
