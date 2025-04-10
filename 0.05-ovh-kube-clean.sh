@@ -13,7 +13,7 @@ export KUBECONFIG=./jarvis-operator/kubeconfig-ovh.yml
 
 kubectl delete jarvisoperator.fullstack.wilda.fr check-release -n jarvis
 kubectl delete ns jarvis
-kubectl delete -f ./target/kubernetes/kubernetes.yml
+kubectl delete -f ./jarvis-operator/target/kubernetes/kubernetes.yml
 kubectl delete crd/helloworldoperators.fullstack.wilda.fr
 kubectl delete crd/jarvisoperators.fullstack.wilda.fr
 kubectl delete ns jarvis-operator
