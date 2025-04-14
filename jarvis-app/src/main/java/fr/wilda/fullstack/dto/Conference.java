@@ -72,9 +72,9 @@ public class Conference implements Serializable {
   @Override
   public String toString() {
     return """
-        Ci-dessous un talk du prochaine Devoxx France 2025:
+        Ci-dessous un talk du prochain Devoxx France 2025:
         Titre du talk : %s
-        Descritpion du talk :
+        Description du talk :
         %s
         Le speaker est : %s
         Type de session :
